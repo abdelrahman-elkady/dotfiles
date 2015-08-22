@@ -1,0 +1,6 @@
+# any autosaved file
+*~
+
+# python binaries
+.pyc
+.pyo
