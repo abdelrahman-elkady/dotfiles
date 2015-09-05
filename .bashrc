@@ -113,12 +113,56 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# modified version of https://github.com/xvoland/Extract/blob/master/extract.sh
+# Extracting different archives with one function !
+function extract {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+ else
+    if [ -f "$1" ] ; then
+
+        # I hate scattering files around !, make a directory to extract files in if needed
+        name=${2}
+        archive_dir=.
+        if [ -n "$name" ]; then
+          mkdir $name && cd $name
+          archive_dir=$archive_dir/..
+        fi
+
+        case "$1" in
+          *.tar.bz2)   tar xvjf $archive_dir/"$1"    ;;
+          *.tar.gz)    tar xvzf $archive_dir/"$1"    ;;
+          *.tar.xz)    tar xvJf $archive_dir/"$1"    ;;
+          *.lzma)      unlzma $archive_dir/"$1"      ;;
+          *.bz2)       bunzip2 $archive_dir/"$1"     ;;
+          *.rar)       unrar x -ad $archive_dir/"$1" ;;
+          *.gz)        gunzip $archive_dir/"$1"      ;;
+          *.tar)       tar xvf $archive_dir/"$1"     ;;
+          *.tbz2)      tar xvjf $archive_dir/"$1"    ;;
+          *.tgz)       tar xvzf $archive_dir/"$1"    ;;
+          *.zip)       unzip $archive_dir/"$1"       ;;
+          *.Z)         uncompress $archive_dir/"$1"  ;;
+          *.7z)        7z x $archive_dir/"$1"        ;;
+          *.xz)        unxz $archive_dir/"$1"        ;;
+          *.exe)       cabextract $archive_dir/"$1"  ;;
+          *)           echo "extract: '$1' - unknown archive method" ;;
+        esac
+    else
+        echo "'$1' - file does not exist"
+    fi
+fi
+}
+
+
 # setting 256-color
 export TERM=xterm-256color
 
 # rbenv setup
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# ruby-build plugin for rbenv runy installations
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 # Rails `gem`
