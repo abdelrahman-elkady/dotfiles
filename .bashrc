@@ -178,5 +178,8 @@ export PATH=$PATH:/home/kady/.rbenv/shims/htmlbeautifier
 # Android platform tools
 export PATH=/home/kady/Android/Sdk/platform-tools:$PATH
 
+# Adding node binaries to PATH
+export PATH=~/npm-packages/bin:$PATH
+
 # adding npm to NODE_PATH
 export NODE_PATH=$NODE_PATH:/home/kady/npm-packages/lib/node_modules
