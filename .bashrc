@@ -113,6 +113,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
+# Exporting dotfiles path
+export DOTFILES="$HOME/dotfiles/"
+
+# Loading env and path
+[[ -s "$DOTFILES/system/env" ]] && source "$DOTFILES/system/env"
+[[ -s "$DOTFILES/system/path" ]] && source "$DOTFILES/system/path"
+
+
 # modified version of https://github.com/xvoland/Extract/blob/master/extract.sh
 # Extracting different archives with one function !
 function extract {
