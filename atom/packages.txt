@@ -1,0 +1,10 @@
+atom-beautify@0.28.11
+atom-material-syntax@0.2.3
+atom-material-ui@0.6.0
+color-picker@2.0.11
+emmet@2.3.12
+file-icons@1.6.9
+minimap@4.13.2
+monokai@0.18.0
+pigments@0.13.2
+
