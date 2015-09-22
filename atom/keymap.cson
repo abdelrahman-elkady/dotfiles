@@ -1,0 +1,10 @@
+# Stopping emmet from getting ctrl + ,
+'atom-text-editor:not([mini])':
+  'ctrl-,': 'application:show-settings'
+
+# Project Search and atom beautify
+'atom-text-editor':
+  'ctrl-shift-a':'project-find:show'
+
+'atom-text-editor:not([mini])':
+  'ctrl-shift-f':'atom-beautify:beautify-editor'
