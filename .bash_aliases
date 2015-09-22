@@ -11,3 +11,8 @@ apm() {
         command apm "$@"
     fi
 }
+
+# compiling cpp with openGL linking
+function g++gl(){
+  command g++ "$@" -lglut -lGL -lGLU
+}
