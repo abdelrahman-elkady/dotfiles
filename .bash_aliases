@@ -16,3 +16,12 @@ apm() {
 function g++gl(){
   command g++ "$@" -lglut -lGL -lGLU
 }
+
+# Life is too short to activate virtualenv manually !
+function venv(){
+  if [ -n "$@" ]; then
+    command source venv/bin/activate
+  else
+    command source "$@"/bin/activate
+  fi
+}
