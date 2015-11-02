@@ -19,3 +19,5 @@
     css_newline_between_rules: true
     css_preserve_newlines: true
   "autocomplete-plus": {}
+  "tree-view": {}
+  "markdown-preview": {}
