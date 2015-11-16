@@ -10,10 +10,13 @@
     ]
   editor:
     invisibles: {}
-    fontSize: 15
+    fontSize: 16
   "atom-material-ui":
-    fontSize: "Big"
     showTabIcons: "Show on all tabs"
+    tabs: {}
+    fontSize: "Big"
+    fonts:
+      fontSize: "Big"
   "atom-beautify":
     _analyticsUserId: "5ad3dbb0-3d7b-4ff6-be53-793ef349e931"
     css_newline_between_rules: true
