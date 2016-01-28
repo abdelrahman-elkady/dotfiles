@@ -165,3 +165,7 @@ fi
 
 # rbenv init
 eval "$(rbenv init -)"
+
+# NVM
+export NVM_DIR="/home/kady/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
