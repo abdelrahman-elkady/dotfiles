@@ -5,17 +5,17 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 # Rails `gem`
-export PATH=$PATH:/home/kady/.rbenv/shims/gem
+export PATH=$PATH:$HOME/.rbenv/shims/gem
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Atom beautify beautifiers !
-export PATH=$PATH:/home/kady/.rbenv/shims/rbeautify
-export PATH=$PATH:/home/kady/.rbenv/shims/htmlbeautifier
+export PATH=$PATH:$HOME/.rbenv/shims/rbeautify
+export PATH=$PATH:$HOME/.rbenv/shims/htmlbeautifier
 
 # Android platform tools
-export PATH=/home/kady/Android/Sdk/platform-tools:$PATH
+export PATH=$HOME/Android/Sdk/platform-tools:$PATH
 
 # Android Sdk tools
-export PATH=/home/kady/Android/Sdk/tools:$PATH
+export PATH=$HOME/Android/Sdk/tools:$PATH
