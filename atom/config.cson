@@ -1,26 +1,29 @@
 "*":
-  "exception-reporting":
-    userId: "493e9453-81d0-d02e-2b7a-43b2ce72f39b"
-  welcome:
-    showOnStartup: false
+  "atom-beautify":
+    _analyticsUserId: "5ad3dbb0-3d7b-4ff6-be53-793ef349e931"
+    css_newline_between_rules: true
+    css_preserve_newlines: true
+    js_brace_style: "expand"
+  "atom-material-ui":
+    fontSize: "Big"
+    fonts:
+      fontSize: "Big"
+    showTabIcons: "Show on all tabs"
+    tabs: {}
+  "autocomplete-plus": {}
   core:
     themes: [
       "atom-material-ui"
       "monokai"
     ]
   editor:
-    invisibles: {}
     fontSize: 16
-  "atom-material-ui":
-    showTabIcons: "Show on all tabs"
-    tabs: {}
-    fontSize: "Big"
-    fonts:
-      fontSize: "Big"
-  "atom-beautify":
-    _analyticsUserId: "5ad3dbb0-3d7b-4ff6-be53-793ef349e931"
-    css_newline_between_rules: true
-    css_preserve_newlines: true
-  "autocomplete-plus": {}
+    invisibles: {}
+  "exception-reporting":
+    userId: "493e9453-81d0-d02e-2b7a-43b2ce72f39b"
+  "markdown-preview":
+    breakOnSingleNewline: true
+  minimap: {}
   "tree-view": {}
-  "markdown-preview": {}
+  welcome:
+    showOnStartup: false
