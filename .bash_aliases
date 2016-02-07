@@ -1,3 +1,5 @@
+alias ..="cd .."
+
 alias python=python2.7
 
 # localtunnel
