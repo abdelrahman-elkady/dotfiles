@@ -21,13 +21,15 @@
     fontFamily: "roboto mono"
     fontSize: 16
     invisibles: {}
+    scrollPastEnd: true
     showIndentGuide: true
   "exception-reporting":
     userId: "493e9453-81d0-d02e-2b7a-43b2ce72f39b"
   "markdown-preview":
     breakOnSingleNewline: true
   minimap: {}
-  pigments: {}
+  pigments:
+    markerType: "dot"
   "tree-view": {}
   welcome:
     showOnStartup: false
