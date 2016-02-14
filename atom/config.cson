@@ -3,13 +3,14 @@
     _analyticsUserId: "5ad3dbb0-3d7b-4ff6-be53-793ef349e931"
     css_newline_between_rules: true
     css_preserve_newlines: true
-    js_brace_style: "expand"
   "atom-material-ui":
     fontSize: "Big"
     fonts:
       fontSize: "Big"
+      useRobotoInUI: true
     showTabIcons: "Show on all tabs"
-    tabs: {}
+    tabs:
+      showTabIcons: "Show on all tabs"
   "autocomplete-plus": {}
   core:
     themes: [
@@ -17,13 +18,16 @@
       "monokai"
     ]
   editor:
+    fontFamily: "roboto mono"
     fontSize: 16
     invisibles: {}
+    showIndentGuide: true
   "exception-reporting":
     userId: "493e9453-81d0-d02e-2b7a-43b2ce72f39b"
   "markdown-preview":
     breakOnSingleNewline: true
   minimap: {}
+  pigments: {}
   "tree-view": {}
   welcome:
     showOnStartup: false
