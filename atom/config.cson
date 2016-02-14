@@ -18,7 +18,6 @@
       "monokai"
     ]
   editor:
-    fontFamily: "roboto mono"
     fontSize: 16
     invisibles: {}
     scrollPastEnd: true
