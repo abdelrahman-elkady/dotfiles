@@ -19,4 +19,4 @@ ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/.tmux.conf" ~
 
 # Atom symlinks
-ln -sfv $DOTFILES_DIR/atom/* ~/.atom
+ln -sfv $DOTFILES_DIR/atom/ $HOME/.atom
