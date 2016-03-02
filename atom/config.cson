@@ -1,16 +1,42 @@
 "*":
   "atom-beautify":
     _analyticsUserId: "5ad3dbb0-3d7b-4ff6-be53-793ef349e931"
+    _general: {}
+    apex: {}
+    arduino: {}
+    c: {}
+    cfml: {}
+    cpp: {}
+    cs: {}
+    css: {}
     css_newline_between_rules: true
     css_preserve_newlines: true
+    d: {}
+    fortran: {}
+    gherkin: {}
+    html: {}
+    java: {}
+    js: {}
+    js_brace_style: "collapse-preserve-inline"
+    objectivec: {}
+    pawn: {}
+    perl: {}
+    php: {}
+    python: {}
+    ruby: {}
+    rust: {}
+    sql: {}
+    vala: {}
   "atom-material-ui":
-    fontSize: "Big"
+    colors: {}
     fonts:
-      fontSize: "Big"
-      useRobotoInUI: true
-    showTabIcons: "Show on all tabs"
-    tabs:
-      showTabIcons: "Show on all tabs"
+      fontSize: 15
+    tabs: {}
+    treeView:
+      compactList: true
+    ui:
+      animations: false
+      panelContrast: true
   "autocomplete-plus": {}
   core:
     themes: [
