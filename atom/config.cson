@@ -39,6 +39,7 @@
       panelContrast: true
   "autocomplete-plus": {}
   core:
+    allowPendingPaneItems: false
     themes: [
       "atom-material-ui"
       "monokai"
