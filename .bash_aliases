@@ -2,6 +2,8 @@ alias ..="cd .."
 
 alias python=python2.7
 
+alias open=xdg-open
+
 # localtunnel
 alias tunnel=lt
 
