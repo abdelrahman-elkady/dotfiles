@@ -1,23 +1,24 @@
 "*":
   "atom-beautify":
-    _analyticsUserId: "5ad3dbb0-3d7b-4ff6-be53-793ef349e931"
-    _general: {}
     apex: {}
     arduino: {}
     c: {}
     cfml: {}
     cpp: {}
     cs: {}
-    css: {}
-    css_newline_between_rules: true
-    css_preserve_newlines: true
+    css:
+      newline_between_rules: true
+      preserve_newlines: true
     d: {}
     fortran: {}
+    general:
+      _analyticsUserId: "5ad3dbb0-3d7b-4ff6-be53-793ef349e931"
+      _general: {}
     gherkin: {}
     html: {}
     java: {}
-    js: {}
-    js_brace_style: "collapse-preserve-inline"
+    js:
+      brace_style: "collapse-preserve-inline"
     objectivec: {}
     pawn: {}
     perl: {}
