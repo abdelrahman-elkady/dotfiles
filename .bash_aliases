@@ -17,15 +17,25 @@ apm() {
 }
 
 # compiling cpp with openGL linking
-function g++gl(){
+function g++gl() {
   command g++ "$@" -lglut -lGL -lGLU
 }
 
 # Life is too short to activate virtualenv manually !
-function venv(){
+function venv() {
   if [ -n "$@" ]; then
     command source venv/bin/activate
   else
     command source "$@"/bin/activate
   fi
+}
+
+# Shortcut for pip installation as user
+function pip() {
+    if [[ $1 == "-u" ]]; then
+        shift # discard first arg ( which is -u )
+        command pip install --user "$@"
+    else
+        command pip "$@"
+    fi
 }
