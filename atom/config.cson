@@ -4,30 +4,58 @@
     arduino: {}
     c: {}
     cfml: {}
+    coffeescript: {}
     cpp: {}
     cs: {}
     css:
       newline_between_rules: true
       preserve_newlines: true
     d: {}
+    ejs: {}
+    erb: {}
     fortran: {}
     general:
       _analyticsUserId: "5ad3dbb0-3d7b-4ff6-be53-793ef349e931"
       _general: {}
     gherkin: {}
-    html: {}
+    handlebars:
+      indent_size: 2
+    html:
+      indent_size: 2
+    jade: {}
     java: {}
     js:
       brace_style: "collapse-preserve-inline"
+      indent_size: 2
+      space_after_anon_function: true
+    json:
+      indent_size: 2
+    jsx: {}
+    latex: {}
+    less: {}
+    marko: {}
+    mustache: {}
     objectivec: {}
     pawn: {}
     perl: {}
     php: {}
     python: {}
+    riot: {}
     ruby: {}
     rust: {}
+    sass: {}
+    scss: {}
+    spacebars: {}
     sql: {}
+    svg: {}
+    swig: {}
+    tss: {}
+    twig: {}
+    typescript: {}
     vala: {}
+    visualforce: {}
+    xml: {}
+    xtemplate: {}
   "atom-material-ui":
     colors: {}
     fonts:
