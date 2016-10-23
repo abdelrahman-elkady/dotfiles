@@ -169,3 +169,6 @@ eval "$(rbenv init -)"
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# GVM
+[[ -s "/home/kady/.gvm/scripts/gvm" ]] && source "/home/kady/.gvm/scripts/gvm"
