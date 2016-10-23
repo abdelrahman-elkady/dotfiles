@@ -5,6 +5,3 @@
 
 'atom-text-editor':
   'ctrl-shift-a':'project-find:show'
-
-'atom-text-editor[data-grammar="source js jsx"]:not([mini])':
-  'tab': 'emmet:expand-abbreviation-with-tab'

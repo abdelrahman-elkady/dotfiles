@@ -25,9 +25,8 @@
     jade: {}
     java: {}
     js:
+      align_assignments: true
       brace_style: "collapse-preserve-inline"
-      indent_size: 2
-      space_after_anon_function: true
     json:
       indent_size: 2
     jsx: {}
@@ -44,7 +43,9 @@
     ruby: {}
     rust: {}
     sass: {}
-    scss: {}
+    scss:
+      newline_between_rules: true
+      preserve_newlines: true
     spacebars: {}
     sql: {}
     svg: {}
@@ -69,12 +70,13 @@
   "autocomplete-plus": {}
   core:
     allowPendingPaneItems: false
+    telemetryConsent: "limited"
     themes: [
       "atom-material-ui"
       "monokai"
     ]
   editor:
-    fontSize: 16
+    fontSize: 19
     invisibles: {}
     scrollPastEnd: true
     showIndentGuide: true
@@ -86,6 +88,15 @@
   minimap: {}
   pigments:
     markerType: "dot"
+  "spell-check":
+    grammars: [
+      "source.asciidoc"
+      "source.gfm"
+      "text.git-commit"
+      "text.plain"
+      "text.plain.null-grammar"
+      "text.tex.latex"
+    ]
   "tree-view": {}
   welcome:
     showOnStartup: false
