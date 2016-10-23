@@ -4,3 +4,6 @@ export NODE_ENV='development'
 
 # Android !
 export ANDROID_HOME=$HOME/Android/Sdk
+
+# GoLang
+export GOPATH=$HOME/projects-workspace/go-workspace
