@@ -25,3 +25,5 @@ export PATH=$HOME/Android/Sdk/tools:$PATH
 # http://tex.stackexchange.com/questions/1092/
 # how-to-install-vanilla-texlive-on-debian-or-ubuntu
 export PATH=/opt/texbin:/opt/texbin/tlmgr:$PATH
+
+export PATH=$PATH:~/.local/bin
