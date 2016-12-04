@@ -76,13 +76,14 @@
       "monokai"
     ]
   editor:
-    fontSize: 19
+    fontSize: 16
     invisibles: {}
     scrollPastEnd: true
     showIndentGuide: true
   "exception-reporting":
     userId: "493e9453-81d0-d02e-2b7a-43b2ce72f39b"
   "fuzzy-finder": {}
+  linter: {}
   "markdown-preview":
     breakOnSingleNewline: true
   minimap: {}
