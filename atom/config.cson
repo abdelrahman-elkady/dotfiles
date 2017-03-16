@@ -17,6 +17,7 @@
     general:
       _analyticsUserId: "5ad3dbb0-3d7b-4ff6-be53-793ef349e931"
       _general: {}
+      beautifyEntireFileOnSave: false
     gherkin: {}
     handlebars:
       indent_size: 2
@@ -25,11 +26,14 @@
     jade: {}
     java: {}
     js:
-      align_assignments: true
+      align_assignments: false
       brace_style: "collapse-preserve-inline"
+      indent_size: 2
     json:
       indent_size: 2
-    jsx: {}
+    jsx:
+      brace_style: "collapse-preserve-inline"
+      indent_size: 2
     latex: {}
     less: {}
     marko: {}
@@ -70,6 +74,7 @@
   "autocomplete-plus": {}
   core:
     allowPendingPaneItems: false
+    packagesWithKeymapsDisabled: []
     telemetryConsent: "limited"
     themes: [
       "atom-material-ui"
@@ -84,6 +89,7 @@
     userId: "493e9453-81d0-d02e-2b7a-43b2ce72f39b"
   "fuzzy-finder": {}
   linter: {}
+  "linter-ui-default": {}
   "markdown-preview":
     breakOnSingleNewline: true
   minimap: {}

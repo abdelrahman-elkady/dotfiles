@@ -2,7 +2,7 @@
   'ctrl-,': 'application:show-settings' # Stopping emmet from getting ctrl + ,
   'ctrl-shift-f':'atom-beautify:beautify-editor'
   'ctrl-shift-m': 'markdown-preview:toggle' # Stopping emmet again from getting ctrl-shift-m
-  'ctrl-l': 'linter:toggle' # I don't use Line select anyways !
+  'ctrl-l': 'linter:toggle-active-editor' # I don't use Line select anyways !
 
 'body':
   'ctrl-shift-a':'project-find:show'
