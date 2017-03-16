@@ -7,3 +7,6 @@ export ANDROID_HOME=$HOME/Android/Sdk
 
 # GoLang
 export GOPATH=$HOME/projects-workspace/go-workspace
+
+# C/C++ env variables
+export LD_LIBRARY_PATH=/usr/lib

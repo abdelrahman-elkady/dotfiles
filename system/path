@@ -35,6 +35,3 @@ export PYTHONPATH=$PYTHONPATH:$BAKE_HOME
 
 # SUMO Installation
 export SUMO_HOME=usr/share/sumo/
-
-# Anaconda !
-export PATH=$PATH:$HOME/anaconda3/bin
