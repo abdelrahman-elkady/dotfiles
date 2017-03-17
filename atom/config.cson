@@ -50,7 +50,8 @@
     scss:
       newline_between_rules: true
       preserve_newlines: true
-    spacebars: {}
+    spacebars:
+      indent_size: 2
     sql: {}
     svg: {}
     swig: {}
@@ -81,7 +82,7 @@
       "monokai"
     ]
   editor:
-    fontSize: 16
+    fontSize: 15
     invisibles: {}
     scrollPastEnd: true
     showIndentGuide: true
