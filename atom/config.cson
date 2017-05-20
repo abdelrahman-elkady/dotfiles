@@ -90,6 +90,8 @@
     userId: "493e9453-81d0-d02e-2b7a-43b2ce72f39b"
   "fuzzy-finder": {}
   linter: {}
+  "linter-eslint":
+    lintHtmlFiles: true
   "linter-ui-default": {}
   "markdown-preview":
     breakOnSingleNewline: true
