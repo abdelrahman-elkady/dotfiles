@@ -4,5 +4,8 @@
   'ctrl-shift-m': 'markdown-preview:toggle' # Stopping emmet again from getting ctrl-shift-m
   'ctrl-l': 'linter:toggle-active-editor' # I don't use Line select anyways !
 
+'atom-text-editor:not([mini])[data-grammar~="js"]':
+  'ctrl-shift-f': 'prettier:format'
+
 'body':
   'ctrl-shift-a':'project-find:show'

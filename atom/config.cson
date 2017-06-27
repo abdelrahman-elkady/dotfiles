@@ -72,6 +72,7 @@
     ui:
       animations: false
       panelContrast: true
+      useAnimations: false
   "autocomplete-plus": {}
   core:
     allowPendingPaneItems: false
@@ -92,12 +93,18 @@
   linter: {}
   "linter-eslint":
     lintHtmlFiles: true
-  "linter-ui-default": {}
+  "linter-ui-default":
+    panelHeight: 93
+    showPanel: true
   "markdown-preview":
     breakOnSingleNewline: true
   minimap: {}
   pigments:
     markerType: "dot"
+  "prettier-atom":
+    prettierOptions:
+      singleQuote: true
+    useEslint: true
   "spell-check":
     grammars: [
       "source.asciidoc"
