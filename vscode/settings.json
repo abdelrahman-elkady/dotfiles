@@ -1,0 +1,19 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "atomKeymap.promptV3Features": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.formatOnPaste": false,
+    
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true
+    },
+    "editor.fontSize": 15,
+    "workbench.colorTheme": "Monokai",
+    "editor.fontFamily": "Menlo, Consolas, 'DejaVu Sans Mono', monospace",
+    "editor.cursorStyle": "line",
+    "editor.renderLineHighlight": "gutter"
+}
