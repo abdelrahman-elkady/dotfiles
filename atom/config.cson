@@ -83,7 +83,7 @@
       "monokai"
     ]
   editor:
-    fontSize: 15
+    fontSize: 16
     invisibles: {}
     scrollPastEnd: true
     showIndentGuide: true
@@ -94,7 +94,7 @@
   "linter-eslint":
     lintHtmlFiles: true
   "linter-ui-default":
-    panelHeight: 93
+    panelHeight: 81
     showPanel: true
   "markdown-preview":
     breakOnSingleNewline: true
