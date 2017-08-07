@@ -3,7 +3,7 @@
     "atomKeymap.promptV3Features": true,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.formatOnPaste": false,
-   
+
     "editor.fontSize": 15,
     "workbench.colorTheme": "Monokai",
     "editor.fontFamily": "Menlo, Consolas, 'DejaVu Sans Mono', monospace",
@@ -12,11 +12,14 @@
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "window.zoomLevel": 0,
-    
+
     "search.exclude": {
         "**/node_modules": true,
         "**/bower_components": true,
         "**/.meteor/local": true,
         "**/.git": true
-    }
+    },
+
+    "editor.tabCompletion": true,
+    "files.trimTrailingWhitespace": true
 }
