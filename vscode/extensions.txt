@@ -1,0 +1,12 @@
+HookyQR.beautify
+PKief.material-icon-theme
+andrejunges.Handlebars
+azemoh.one-monokai
+christian-kohler.npm-intellisense
+christian-kohler.path-intellisense
+dbaeumer.vscode-eslint
+dzannotti.vscode-babel-coloring
+esbenp.prettier-vscode
+ms-vscode.atom-keybindings
+vmsynkov.colonize
+vuhrmeister.vscode-meteor
