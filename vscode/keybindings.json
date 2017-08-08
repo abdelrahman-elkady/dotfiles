@@ -40,5 +40,15 @@
     {
         "key": "shift+alt+f",
         "command": "-editor.action.formatDocument"
+    },
+    {
+        "key": "ctrl+;",
+        "command": "colonize.endline",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+enter",
+        "command": "-colonize.endline",
+        "when": "editorTextFocus"
     }
 ]
