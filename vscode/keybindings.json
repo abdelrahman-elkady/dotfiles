@@ -7,5 +7,38 @@
     {
         "key": "ctrl+t",
         "command": "workbench.action.quickOpen"
+    },
+    {
+        "command": "workbench.action.findInFiles",
+        "key": "ctrl+shift+a",
+        "when": "!searchInputBoxFocus"
+    },
+    {
+        "key": "ctrl+shift+a",
+        "command": "-editor.action.blockComment",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "-workbench.action.findInFiles",
+        "when": "!searchInputBoxFocus"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "-workbench.view.search",
+        "when": "!searchViewletVisible"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "-search.action.focusActiveEditor",
+        "when": "searchInputBoxFocus && searchViewletVisible"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "editor.action.formatDocument"
+    },
+    {
+        "key": "shift+alt+f",
+        "command": "-editor.action.formatDocument"
     }
 ]

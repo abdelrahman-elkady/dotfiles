@@ -21,5 +21,6 @@
     },
 
     "editor.tabCompletion": true,
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "prettier.eslintIntegration": true
 }
