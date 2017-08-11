@@ -4,7 +4,7 @@
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.formatOnPaste": false,
 
-    "editor.fontSize": 15,
+    "editor.fontSize": 16,
     "workbench.colorTheme": "Monokai",
     "editor.fontFamily": "Menlo, Consolas, 'DejaVu Sans Mono', monospace",
     "editor.cursorStyle": "line",
@@ -22,5 +22,6 @@
 
     "editor.tabCompletion": true,
     "files.trimTrailingWhitespace": true,
-    "prettier.eslintIntegration": true
+    "prettier.eslintIntegration": true,
+    "editor.tabSize": 2
 }
