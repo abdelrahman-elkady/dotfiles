@@ -118,8 +118,8 @@ fi
 export DOTFILES="$HOME/dotfiles/"
 
 # Loading env and path
-[[ -s "$DOTFILES/system/env" ]] && source "$DOTFILES/system/env"
-[[ -s "$DOTFILES/system/path" ]] && source "$DOTFILES/system/path"
+[[ -s "$DOTFILES/system/env.sh" ]] && source "$DOTFILES/system/env.sh"
+[[ -s "$DOTFILES/system/path.sh" ]] && source "$DOTFILES/system/path.sh"
 
 
 # modified version of https://github.com/xvoland/Extract/blob/master/extract.sh

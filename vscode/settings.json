@@ -17,11 +17,14 @@
         "**/node_modules": true,
         "**/bower_components": true,
         "**/.meteor/local": true,
+        "**/kl-virtualenv": true,
         "**/.git": true
     },
 
     "editor.tabCompletion": true,
     "files.trimTrailingWhitespace": true,
     "prettier.eslintIntegration": true,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "workbench.startupEditor": "welcomePage",
+    "workbench.panel.location": "bottom"
 }

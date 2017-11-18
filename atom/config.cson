@@ -99,8 +99,7 @@
   "markdown-preview":
     breakOnSingleNewline: true
   minimap: {}
-  pigments:
-    markerType: "dot"
+  pigments: {}
   "prettier-atom":
     prettierOptions:
       singleQuote: true

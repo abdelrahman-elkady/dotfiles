@@ -9,7 +9,7 @@
         "command": "workbench.action.quickOpen"
     },
     {
-        "command": "workbench.action.findInFiles",
+        "command": "workbench.action.findInFilesWithSelectedText",
         "key": "ctrl+shift+a",
         "when": "!searchInputBoxFocus"
     },
