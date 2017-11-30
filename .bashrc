@@ -182,6 +182,7 @@ eval "$(rbenv init -)"
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # GVM
 [[ -s "/home/kady/.gvm/scripts/gvm" ]] && source "/home/kady/.gvm/scripts/gvm"
