@@ -26,5 +26,6 @@
     "prettier.eslintIntegration": true,
     "editor.tabSize": 2,
     "workbench.startupEditor": "welcomePage",
-    "workbench.panel.location": "bottom"
+    "workbench.panel.location": "bottom",
+    "java.errors.incompleteClasspath.severity": "ignore"
 }
