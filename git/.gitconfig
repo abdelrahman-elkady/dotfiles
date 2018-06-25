@@ -5,3 +5,6 @@
 	email = elkadyabdelrahman@gmail.com
 [color]
 	ui = true
+
+[includeIf "gitdir:~/project-workspace/bosta/"]
+  path = .gitconfig-bosta

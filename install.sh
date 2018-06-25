@@ -13,6 +13,7 @@ ln -sfv "$DOTFILES_DIR/.bash_aliases" ~
 
 # Git symlinks
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
+ln -sfv "$DOTFILES_DIR/git/.gitconfig-bosta" ~
 
 # Tmux symlinks
 ln -sfv "$DOTFILES_DIR/.tmux.conf" ~
