@@ -1,5 +1,8 @@
+Equinusocio.vsc-material-theme
 HookyQR.beautify
 PKief.material-icon-theme
+PeterJausovec.vscode-docker
+WallabyJs.quokka-vscode
 andrejunges.Handlebars
 azemoh.one-monokai
 christian-kohler.npm-intellisense
@@ -20,3 +23,4 @@ vscjava.vscode-java-pack
 vscjava.vscode-java-test
 vscjava.vscode-maven
 vuhrmeister.vscode-meteor
+wayou.vscode-todo-highlight
