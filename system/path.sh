@@ -35,3 +35,6 @@ export PYTHONPATH=$PYTHONPATH:$BAKE_HOME
 
 # SUMO Installation
 export SUMO_HOME=usr/share/sumo/
+
+# ARC ( Phabricator )
+export PATH=$PATH:/opt/arc/arcanist/bin
