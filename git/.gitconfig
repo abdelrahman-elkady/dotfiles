@@ -1,10 +1,9 @@
 [core]
 	editor = 'vim'
 [user]
-	name = kady
+	name = Abdelrahman Elkady
 	email = elkadyabdelrahman@gmail.com
 [color]
 	ui = true
-
-[includeIf "gitdir:~/project-workspace/bosta/"]
-  path = .gitconfig-bosta
+[includeIf "gitdir:~/project-workspace/coligo/"]
+  path = ~/.gitconfig-coligo
