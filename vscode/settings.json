@@ -23,11 +23,21 @@
 
     "editor.tabCompletion": true,
     "files.trimTrailingWhitespace": true,
-    "prettier.eslintIntegration": true,
     "editor.tabSize": 2,
     "workbench.startupEditor": "welcomePage",
     "workbench.panel.location": "bottom",
     "java.errors.incompleteClasspath.severity": "ignore",
     "[javascript]": {},
-    "javascript.updateImportsOnFileMove.enabled": "prompt"
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "prettier.eslintIntegration": true,
+
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue"
+    ],
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "breadcrumbs.enabled": true
 }
