@@ -27,14 +27,3 @@ export PATH=$HOME/Android/Sdk/tools:$PATH
 export PATH=/opt/texbin:/opt/texbin/tlmgr:$PATH
 
 export PATH=$PATH:~/.local/bin
-
-# Bake paths for ns3
-export BAKE_HOME=~/bin/bake
-export PATH=$PATH:$BAKE_HOME
-export PYTHONPATH=$PYTHONPATH:$BAKE_HOME
-
-# SUMO Installation
-export SUMO_HOME=usr/share/sumo/
-
-# ARC ( Phabricator )
-export PATH=$PATH:/opt/arc/arcanist/bin
