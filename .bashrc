@@ -117,9 +117,10 @@ fi
 # Exporting dotfiles path
 export DOTFILES="$HOME/dotfiles/"
 
-# Loading env and path
+# Loading config files
 [[ -s "$DOTFILES/system/env.sh" ]] && source "$DOTFILES/system/env.sh"
 [[ -s "$DOTFILES/system/path.sh" ]] && source "$DOTFILES/system/path.sh"
+[[ -s "$DOTFILES/completions/npm-completion.sh" ]] && source "$DOTFILES/completions/npm-completion.sh"
 
 
 # modified version of https://github.com/xvoland/Extract/blob/master/extract.sh
