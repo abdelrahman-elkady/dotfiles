@@ -50,5 +50,9 @@
         "key": "shift+enter",
         "command": "-colonize.endline",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+q",
+        "command": "eslint.executeAutofix"
     }
 ]
