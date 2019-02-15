@@ -39,5 +39,25 @@
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
     },
-    "breadcrumbs.enabled": true
+    "breadcrumbs.enabled": true,
+    "cSpell.userWords": [
+        "Coligo",
+        "Denormalize",
+        "Mutators",
+        "Paypal",
+        "UNPROCESSABLE",
+        "Uploader",
+        "backend",
+        "comparator",
+        "denormalized",
+        "linebreak",
+        "maxlength",
+        "middlewares",
+        "minlength",
+        "mockingoose",
+        "mongod",
+        "multipart"
+    ],
+    "terminal.integrated.rendererType": "dom",
+    "quokka.colorizeOutput": false
 }
