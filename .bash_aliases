@@ -1,6 +1,6 @@
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 alias python=python2.7
 
@@ -10,6 +10,9 @@ alias gcopy='xclip -selection clipboard'
 
 # localtunnel
 alias tunnel=lt
+
+# ssh tunnel
+alias socks='ssh -D 2048 -C -q -N main.do'
 
 # saving atom package list in pip like way !
 apm() {
@@ -41,5 +44,14 @@ function pip() {
         command pip install --user "$@"
     else
         command pip "$@"
+    fi
+}
+
+# Shortcut to commit with a version bump in git
+function bump() {
+    if [[ -z "$1" ]]; then
+      echo 'ERR: Please pass the version number'
+    else
+        command git commit -m ":arrow_up: Bump version to $1"
     fi
 }
