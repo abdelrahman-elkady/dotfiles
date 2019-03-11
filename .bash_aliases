@@ -50,8 +50,8 @@ function pip() {
 # Shortcut to commit with a version bump in git
 function bump() {
     if [[ -z "$1" ]]; then
-      echo 'ERR: Please pass the version number'
+      npm version patch -m ":arrow_up: Bump version to %s"
     else
-        command git commit -m ":arrow_up: Bump version to $1"
+      npm version $1 -m ":arrow_up: Bump version to %s"
     fi
 }
