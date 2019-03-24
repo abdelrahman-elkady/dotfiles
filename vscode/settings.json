@@ -42,10 +42,13 @@
     "cSpell.userWords": [
         "Coligo",
         "Denormalize",
+        "GRADEBOOK",
+        "IGCSE",
         "Mutators",
         "Paypal",
         "UNPROCESSABLE",
         "Uploader",
+        "Werd",
         "backend",
         "comparator",
         "denormalized",
@@ -56,7 +59,9 @@
         "minlength",
         "mockingoose",
         "mongod",
-        "multipart"
+        "multipart",
+        "promisify",
+        "uuidv"
     ],
     "terminal.integrated.rendererType": "dom",
     "quokka.colorizeOutput": false,
@@ -65,5 +70,12 @@
         "color": "#ffffff",
         "backgroundColor": "#000000",
         "overviewRulerColor": "#000000"
+    }, {
+        "text": "REFACTOR:",
+        "color": "#000000",
+        "backgroundColor": "#49ff8c",
+        "overviewRulerColor": "#49ff8c"
     }],
+"editor.suggestSelection": "first",
+"vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 }
