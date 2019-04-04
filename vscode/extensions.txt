@@ -32,3 +32,4 @@ vuhrmeister.vscode-meteor
 WallabyJs.quokka-vscode
 wayou.vscode-todo-highlight
 wix.vscode-import-cost
+wmaurer.change-case
