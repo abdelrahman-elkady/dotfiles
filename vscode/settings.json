@@ -26,7 +26,6 @@
     "workbench.startupEditor": "welcomePage",
     "workbench.panel.location": "bottom",
     "java.errors.incompleteClasspath.severity": "ignore",
-    "[javascript]": {},
     "javascript.updateImportsOnFileMove.enabled": "always",
     "prettier.eslintIntegration": true,
 
@@ -78,4 +77,8 @@
     }],
 "editor.suggestSelection": "first",
 "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+"[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"markdown.extension.toc.updateOnSave": false,
 }

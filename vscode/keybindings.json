@@ -62,5 +62,18 @@
     {
         "key": "ctrl+shift+f",
         "command": "-workbench.action.findInFiles"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-workbench.action.showAllEditors"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-workbench.action.quickOpenNavigateNext",
+        "when": "inQuickOpen"
     }
 ]
