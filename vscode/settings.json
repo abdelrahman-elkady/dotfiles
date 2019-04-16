@@ -27,7 +27,6 @@
     "workbench.panel.location": "bottom",
     "java.errors.incompleteClasspath.severity": "ignore",
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "prettier.eslintIntegration": true,
 
     "eslint.validate": [
         "javascript",
