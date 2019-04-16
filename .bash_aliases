@@ -14,6 +14,8 @@ alias tunnel=lt
 # ssh tunnel
 alias socks='ssh -D 2048 -C -q -N main.do'
 
+alias git-clear-tags='git tag -d $(git tag -l)'
+
 # saving atom package list in pip like way !
 apm() {
     if [[ $@ == "freeze" ]]; then
