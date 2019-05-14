@@ -1,83 +1,96 @@
 {
-    "workbench.iconTheme": "material-icon-theme",
-    "atomKeymap.promptV3Features": true,
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.formatOnPaste": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "atomKeymap.promptV3Features": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.formatOnPaste": false,
 
-    "editor.fontSize": 16,
-    "workbench.colorTheme": "Monokai",
-    "editor.fontFamily": "Menlo, Consolas, 'DejaVu Sans Mono', monospace",
-    "editor.cursorStyle": "line",
-    "editor.renderLineHighlight": "gutter",
-    "workbench.editor.enablePreview": false,
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-    "window.zoomLevel": 0,
-    "search.exclude": {
-        "**/node_modules": true,
-        "**/bower_components": true,
-        "**/.meteor/local": true,
-        "**/kl-virtualenv": true,
-        "**/.git": true
+  "editor.fontSize": 16,
+  "workbench.colorTheme": "Monokai",
+  "editor.fontFamily": "Menlo, Consolas, 'DejaVu Sans Mono', monospace",
+  "editor.cursorStyle": "line",
+  "editor.renderLineHighlight": "gutter",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "window.zoomLevel": 0,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/.meteor/local": true,
+    "**/kl-virtualenv": true,
+    "**/.git": true
+  },
+
+  "editor.tabCompletion": true,
+  "files.trimTrailingWhitespace": true,
+  "editor.tabSize": 2,
+  "workbench.startupEditor": "welcomePage",
+  "workbench.panel.location": "bottom",
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  "eslint.validate": ["javascript", "javascriptreact", "vue"],
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+  },
+  "breadcrumbs.enabled": true,
+  "cSpell.userWords": [
+    "Coligo",
+    "Denormalize",
+    "GRADEBOOK",
+    "Hackaround",
+    "IGCSE",
+    "Mutators",
+    "Paypal",
+    "UNPROCESSABLE",
+    "Uploader",
+    "Validators",
+    "Werd",
+    "backend",
+    "comparator",
+    "denormalized",
+    "denormalizing",
+    "linebreak",
+    "maxlength",
+    "middlewares",
+    "minlength",
+    "mockingoose",
+    "mongod",
+    "multipart",
+    "promisify",
+    "uuidv"
+  ],
+  "terminal.integrated.rendererType": "dom",
+  "quokka.colorizeOutput": false,
+  "todohighlight.keywords": [
+    {
+      "text": "HACK:",
+      "color": "#ffffff",
+      "backgroundColor": "#000000",
+      "overviewRulerColor": "#000000"
     },
-
-    "editor.tabCompletion": true,
-    "files.trimTrailingWhitespace": true,
-    "editor.tabSize": 2,
-    "workbench.startupEditor": "welcomePage",
-    "workbench.panel.location": "bottom",
-    "java.errors.incompleteClasspath.severity": "ignore",
-    "javascript.updateImportsOnFileMove.enabled": "always",
-
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "vue"
-    ],
-    "gitlens.advanced.messages": {
-        "suppressShowKeyBindingsNotice": true
-    },
-    "breadcrumbs.enabled": true,
-    "cSpell.userWords": [
-        "Coligo",
-        "Denormalize",
-        "GRADEBOOK",
-        "IGCSE",
-        "Mutators",
-        "Paypal",
-        "UNPROCESSABLE",
-        "Uploader",
-        "Werd",
-        "backend",
-        "comparator",
-        "denormalized",
-        "denormalizing",
-        "linebreak",
-        "maxlength",
-        "middlewares",
-        "minlength",
-        "mockingoose",
-        "mongod",
-        "multipart",
-        "promisify",
-        "uuidv"
-    ],
-    "terminal.integrated.rendererType": "dom",
-    "quokka.colorizeOutput": false,
-    "todohighlight.keywords": [{
-        "text": "HACK:",
-        "color": "#ffffff",
-        "backgroundColor": "#000000",
-        "overviewRulerColor": "#000000"
-    }, {
-        "text": "REFACTOR:",
-        "color": "#000000",
-        "backgroundColor": "#49ff8c",
-        "overviewRulerColor": "#49ff8c"
-    }],
-"editor.suggestSelection": "first",
-"vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-"[javascript]": {
+    {
+      "text": "REFACTOR:",
+      "color": "#000000",
+      "backgroundColor": "#49ff8c",
+      "overviewRulerColor": "#49ff8c"
+    }
+  ],
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"markdown.extension.toc.updateOnSave": false,
+  },
+  "markdown.extension.toc.updateOnSave": false,
+  "emmet.triggerExpansionOnTab": true,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "explorer.openEditors.visible": 0,
+  "window.title": "${dirty} ${activeEditorShort}${separator}${rootName}",
+  "editor.minimap.showSlider": "always",
+  "editor.overviewRulerLanes": 120,
+  "editor.minimap.maxColumn": 200
 }
