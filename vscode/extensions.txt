@@ -4,12 +4,14 @@ christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 codezombiech.gitignore
 dbaeumer.vscode-eslint
-dzannotti.vscode-babel-coloring
+dracula-theme.theme-dracula
 eamodio.gitlens
 Equinusocio.vsc-material-theme
 esbenp.prettier-vscode
 GitHub.vscode-pull-request-github
 HookyQR.beautify
+letrieu.expand-region
+mgmcdermott.vscode-language-babel
 mikestead.dotenv
 mrmlnc.vscode-duplicate
 ms-python.python
@@ -21,6 +23,7 @@ PKief.material-icon-theme
 redhat.java
 robinbentley.sass-indented
 streetsidesoftware.code-spell-checker
+tomoki1207.vscode-input-sequence
 VisualStudioExptTeam.vscodeintellicode
 vmsynkov.colonize
 vscjava.vscode-java-debug
@@ -31,5 +34,8 @@ vscjava.vscode-maven
 vuhrmeister.vscode-meteor
 WallabyJs.quokka-vscode
 wayou.vscode-todo-highlight
+whtouche.vscode-js-console-utils
 wix.vscode-import-cost
 wmaurer.change-case
+yzane.markdown-pdf
+yzhang.markdown-all-in-one
