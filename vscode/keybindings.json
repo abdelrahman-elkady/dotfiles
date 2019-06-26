@@ -115,7 +115,7 @@
     {
         "key": "ctrl+shift+c",
         "command": "copyRelativeFilePath",
-        "when": "!editorFocus"
+        "when": "editorFocus"
     },
     {
         "key": "ctrl+shift+alt+c",
