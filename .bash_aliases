@@ -2,8 +2,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias python=python2.7
-
 alias open=xdg-open
 
 alias gcopy='xclip -selection clipboard'
