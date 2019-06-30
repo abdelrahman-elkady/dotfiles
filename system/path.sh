@@ -1,18 +1,5 @@
-# rbenv setup
-export PATH="$HOME/.rbenv/bin:$PATH"
-
-# ruby-build plugin for rbenv runy installations
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-
-# Rails `gem`
-export PATH=$PATH:$HOME/.rbenv/shims/gem
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-
-# Atom beautify beautifiers !
-export PATH=$PATH:$HOME/.rbenv/shims/rbeautify
-export PATH=$PATH:$HOME/.rbenv/shims/htmlbeautifier
 
 # Android platform tools
 export PATH=$HOME/Android/Sdk/platform-tools:$PATH

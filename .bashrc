@@ -177,9 +177,6 @@ function color_my_prompt {
 
 color_my_prompt
 
-# rbenv init
-eval "$(rbenv init -)"
-
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
