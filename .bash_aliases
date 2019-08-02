@@ -14,6 +14,8 @@ alias socks='ssh -D 2048 -C -q -N main.do'
 
 alias git-clear-tags='git tag -d $(git tag -l)'
 
+alias wifi-restart='killall nm-applet; nohup nm-applet &'
+
 # saving atom package list in pip like way !
 apm() {
     if [[ $@ == "freeze" ]]; then
@@ -50,6 +52,7 @@ function pip() {
 # Shortcut to commit with a version bump in git
 function bump() {
     if [[ -z "$1" ]]; then
+      # defaults to bump the patch version
       npm version patch -m ":arrow_up: Bump version to %s"
     else
       npm version $1 -m ":arrow_up: Bump version to %s"
