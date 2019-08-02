@@ -92,5 +92,14 @@
   "window.title": "${dirty} ${activeEditorShort}${separator}${rootName}",
   "editor.minimap.showSlider": "always",
   "editor.overviewRulerLanes": 120,
-  "editor.minimap.maxColumn": 200
+  "editor.minimap.maxColumn": 200,
+  "workbench.colorCustomizations": {},
+  "materialTheme.accent": "Remove accents",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "python.jediEnabled": false,
+  "showMusicMetrics": false,
+  "showGitMetrics": false,
+  "showWeeklyRanking": false
 }
