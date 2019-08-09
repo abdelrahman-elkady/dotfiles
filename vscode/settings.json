@@ -5,7 +5,6 @@
   "editor.formatOnPaste": false,
 
   "editor.fontSize": 16,
-  "workbench.colorTheme": "Monokai",
   "editor.fontFamily": "Menlo, Consolas, 'DejaVu Sans Mono', monospace",
   "editor.cursorStyle": "line",
   "editor.renderLineHighlight": "gutter",
@@ -39,6 +38,7 @@
     "GRADEBOOK",
     "Hackaround",
     "IGCSE",
+    "Mahmoud",
     "Mutators",
     "Paypal",
     "UNPROCESSABLE",
@@ -101,5 +101,6 @@
   "python.jediEnabled": false,
   "showMusicMetrics": false,
   "showGitMetrics": false,
-  "showWeeklyRanking": false
+  "showWeeklyRanking": false,
+  "workbench.colorTheme": "One Monokai"
 }
