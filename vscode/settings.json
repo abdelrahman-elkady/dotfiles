@@ -102,5 +102,6 @@
   "showMusicMetrics": false,
   "showGitMetrics": false,
   "showWeeklyRanking": false,
-  "workbench.colorTheme": "One Monokai"
+  "workbench.colorTheme": "One Monokai",
+  "editor.renderWhitespace": "selection"
 }
