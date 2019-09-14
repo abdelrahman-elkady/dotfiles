@@ -16,6 +16,8 @@ alias git-clear-tags='git tag -d $(git tag -l)'
 
 alias wifi-restart='killall nm-applet; nohup nm-applet &'
 
+alias dco="docker-compose"
+
 # saving atom package list in pip like way !
 apm() {
     if [[ $@ == "freeze" ]]; then
