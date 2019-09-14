@@ -19,7 +19,7 @@
     "**/.git": true
   },
 
-  "editor.tabCompletion": true,
+  "editor.tabCompletion": "on",
   "files.trimTrailingWhitespace": true,
   "editor.tabSize": 2,
   "workbench.startupEditor": "welcomePage",
@@ -103,5 +103,12 @@
   "showGitMetrics": false,
   "showWeeklyRanking": false,
   "workbench.colorTheme": "One Monokai",
-  "editor.renderWhitespace": "selection"
+  "editor.renderWhitespace": "selection",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "turboConsoleLog.addSemicolonInTheEnd": true,
+  "turboConsoleLog.insertEnclosingClass": false,
+  "turboConsoleLog.logMessagePrefix": "",
+  "turboConsoleLog.quote": "'"
 }

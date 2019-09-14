@@ -99,16 +99,6 @@
         "when": "editorFocus"
     },
     {
-        "key": "alt+l",
-        "command": "extension.insertLogStatement",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+shift+l",
-        "command": "-extension.insertLogStatement",
-        "when": "editorTextFocus"
-    },
-    {
         "key": "ctrl+shift+d",
         "command": "-extension.deleteAllLogStatements"
     },
@@ -131,5 +121,13 @@
         "key": "ctrl+shift+c",
         "command": "-workbench.action.terminal.openNativeConsole",
         "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+alt+l",
+        "command": "-turboConsoleLog.displayLogMessage"
+    },
+    {
+        "key": "alt+l",
+        "command": "turboConsoleLog.displayLogMessage"
     }
 ]
