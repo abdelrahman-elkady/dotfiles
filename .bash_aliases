@@ -16,7 +16,6 @@ alias git-clear-tags='git tag -d $(git tag -l)'
 
 alias wifi-restart='killall nm-applet; nohup nm-applet &'
 
-alias dco="docker-compose"
 
 # saving atom package list in pip like way !
 apm() {
@@ -60,3 +59,5 @@ function bump() {
       npm version $1 -m ":arrow_up: Bump version to %s"
     fi
 }
+
+source "$HOME/dotfiles/aliases/docker.sh"
