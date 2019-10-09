@@ -129,5 +129,15 @@
     {
         "key": "alt+l",
         "command": "turboConsoleLog.displayLogMessage"
-    }
+    },
+    {
+        "key": "ctrl+u",
+        "command": "-cursorUndo",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "gitlens.copyRemoteFileUrlToClipboard",
+        "when": "editorTextFocus"
+    },
 ]
