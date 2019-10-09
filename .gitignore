@@ -4,3 +4,6 @@
 # python binaries
 .pyc
 .pyo
+
+# Secrets
+.secrets
