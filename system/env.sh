@@ -1,5 +1,3 @@
-source "$DOTFILES/.secrets"
-
 # setting 256-color
 export TERM=xterm-256color
 export NODE_ENV='development'
