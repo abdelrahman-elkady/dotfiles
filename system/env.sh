@@ -12,3 +12,7 @@ export GOPATH=$HOME/projects-workspace/go-workspace
 
 # C/C++ env variables
 export LD_LIBRARY_PATH=/usr/lib
+
+# Python Virtual Envs (virtualenvwrapper)
+export WORKON_HOME=~/.python-venvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3

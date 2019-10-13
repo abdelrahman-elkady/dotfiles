@@ -122,6 +122,9 @@ export DOTFILES="$HOME/dotfiles/"
 [[ -s "$DOTFILES/system/path.sh" ]] && source "$DOTFILES/system/path.sh"
 [[ -s "$DOTFILES/completions/npm-completion.sh" ]] && source "$DOTFILES/completions/npm-completion.sh"
 
+if [ ! -z "$(ls -A "$DOTFILES/.no-check")" ]; then
+   for f in "$DOTFILES/.no-check/*"; do source $f; done
+fi
 
 # modified version of https://github.com/xvoland/Extract/blob/master/extract.sh
 # Extracting different archives with one function !
@@ -185,6 +188,7 @@ export NVM_DIR="$HOME/.nvm"
 # GVM
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# virtualenvwrapper init script
+source $HOME/.local/bin/virtualenvwrapper.sh
+
+# eval "$(direnv hook bash)"
