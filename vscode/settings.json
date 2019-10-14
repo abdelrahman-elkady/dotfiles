@@ -3,8 +3,6 @@
   "atomKeymap.promptV3Features": true,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.formatOnPaste": false,
-
-  "editor.fontSize": 16,
   "editor.fontFamily": "Menlo, Consolas, 'DejaVu Sans Mono', monospace",
   "editor.cursorStyle": "line",
   "editor.renderLineHighlight": "gutter",
@@ -111,5 +109,6 @@
   "turboConsoleLog.addSemicolonInTheEnd": true,
   "turboConsoleLog.insertEnclosingClass": false,
   "turboConsoleLog.logMessagePrefix": "",
-  "turboConsoleLog.quote": "'"
+  "turboConsoleLog.quote": "'",
+  "editor.fontSize": 15
 }
