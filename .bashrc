@@ -115,7 +115,7 @@ fi
 
 
 # Exporting dotfiles path
-export DOTFILES="$HOME/dotfiles/"
+export DOTFILES="$HOME/dotfiles"
 
 # Loading config files
 [[ -s "$DOTFILES/system/env.sh" ]] && source "$DOTFILES/system/env.sh"
@@ -123,7 +123,9 @@ export DOTFILES="$HOME/dotfiles/"
 [[ -s "$DOTFILES/completions/npm-completion.sh" ]] && source "$DOTFILES/completions/npm-completion.sh"
 
 if [ ! -z "$(ls -A "$DOTFILES/.no-check")" ]; then
-   for f in "$DOTFILES/.no-check/*"; do source $f; done
+   for file in $DOTFILES/.no-check/*; do
+     source $file;
+   done
 fi
 
 # modified version of https://github.com/xvoland/Extract/blob/master/extract.sh
