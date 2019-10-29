@@ -52,9 +52,11 @@
     "maxlength",
     "middlewares",
     "minlength",
+    "mocharc",
     "mockingoose",
     "mongod",
     "multipart",
+    "npmrc",
     "promisify",
     "uuidv"
   ],
@@ -110,5 +112,8 @@
   "turboConsoleLog.insertEnclosingClass": false,
   "turboConsoleLog.logMessagePrefix": "",
   "turboConsoleLog.quote": "'",
-  "editor.fontSize": 15
+  "editor.fontSize": 15,
+  "markdown.extension.italic.indicator": "_",
+  "clock.dateFormat": "hh:MM:ss TT",
+  "files.insertFinalNewline": true
 }
