@@ -1,8 +1,8 @@
 alias compose-up='docker-compose up'
-alias compose-up-build='docker-compose up --build'
+alias cup='docker-compose up --build'
 
 alias compose-down='docker-compose down'
-alias compose-down-f='docker-compose down --rmi local -v'
+alias cdown='docker-compose down --rmi local -v'
 
 # Run docker in interactive mode using (bash)
 # defaults to the current directory name as the container name if no argument is passed
