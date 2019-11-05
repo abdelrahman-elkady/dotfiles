@@ -1,5 +1,5 @@
 alias compose-up='docker-compose up'
-alias cup='docker-compose up --build'
+alias cup="docker-compose up -d --build && d-interactive"
 
 alias compose-down='docker-compose down'
 alias cdown='docker-compose down --rmi local -v'
