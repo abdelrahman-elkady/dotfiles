@@ -191,6 +191,6 @@ export NVM_DIR="$HOME/.nvm"
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 # virtualenvwrapper init script
-source $HOME/.local/bin/virtualenvwrapper.sh
+# source $HOME/.local/bin/virtualenvwrapper.sh
 
 # eval "$(direnv hook bash)"
