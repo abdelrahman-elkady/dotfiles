@@ -31,8 +31,10 @@
   },
   "breadcrumbs.enabled": true,
   "cSpell.userWords": [
+    "Abdelrahman",
     "Coligo",
     "Denormalize",
+    "Elkady",
     "GRADEBOOK",
     "Hackaround",
     "IGCSE",
@@ -58,6 +60,7 @@
     "multipart",
     "npmrc",
     "promisify",
+    "styleguide",
     "uuidv"
   ],
   "terminal.integrated.rendererType": "dom",
@@ -112,8 +115,9 @@
   "turboConsoleLog.insertEnclosingClass": false,
   "turboConsoleLog.logMessagePrefix": "",
   "turboConsoleLog.quote": "'",
-  "editor.fontSize": 15,
   "markdown.extension.italic.indicator": "_",
   "clock.dateFormat": "hh:MM:ss TT",
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "diffEditor.renderSideBySide": false,
+  "editor.fontSize": 15
 }
