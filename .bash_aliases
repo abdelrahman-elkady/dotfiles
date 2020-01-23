@@ -1,7 +1,3 @@
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
 alias open=xdg-open
 
 alias gcopy='xclip -selection clipboard'
@@ -57,5 +53,6 @@ function bump() {
     fi
 }
 
+source "$HOME/dotfiles/aliases/navigation.sh"
 source "$HOME/dotfiles/aliases/docker.sh"
 source "$HOME/dotfiles/aliases/misc.sh"
