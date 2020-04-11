@@ -1,10 +1,3 @@
-alias open=xdg-open
-
-alias gcopy='xclip -selection clipboard'
-
-# localtunnel
-alias tunnel=lt
-
 # ssh tunnel
 alias socks='ssh -D 2048 -C -q -N main.do'
 
@@ -43,16 +36,7 @@ function pip() {
     fi
 }
 
-# Shortcut to commit with a version bump in git
-function bump() {
-    if [[ -z "$1" ]]; then
-      # defaults to bump the patch version
-      npm version patch -m ":arrow_up: Bump version to %s"
-    else
-      npm version $1 -m ":arrow_up: Bump version to %s"
-    fi
-}
-
 source "$HOME/dotfiles/aliases/navigation.sh"
 source "$HOME/dotfiles/aliases/docker.sh"
 source "$HOME/dotfiles/aliases/misc.sh"
+source "$HOME/dotfiles/aliases/git.sh"
