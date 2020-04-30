@@ -21,5 +21,37 @@
 			"console.log(JSON.stringify($1, null, 2))"
 		],
 		"description": "JSON stringify to Console"
-	}
+	},
+
+	"Module Exports": {
+		"prefix": "mod",
+		"body": [
+			"module.exports = { $1 };"
+		]
+	},
+
+	"Module Exports Default": {
+		"prefix": "modf",
+		"body": [
+			"module.exports = $1;"
+		]
+	},
+
+	"Describe Block": {
+		"prefix": ["des", "desc"],
+		"body": [
+			"describe('$1', () => {",
+			"\t$2",
+			"});"
+		]
+	},
+
+	"It test block": {
+		"prefix": ["it"],
+		"body": [
+			"it('$1', async () => {",
+			"\t$2",
+			"});"
+		]
+	},
 }
