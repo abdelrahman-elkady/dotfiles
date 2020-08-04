@@ -41,12 +41,15 @@
     "GRADEBOOK",
     "Hackaround",
     "IGCSE",
+    "LOGDNA",
     "Mahmoud",
     "Mutators",
     "Paypal",
+    "Roadmap",
     "Sanitizable",
     "Softdeletable",
     "Talaat",
+    "Telegraf",
     "Timestampable",
     "UNPROCESSABLE",
     "UUIDs",
@@ -62,6 +65,7 @@
     "comparator",
     "crowdanalyzer",
     "crowdanalyzer's",
+    "deno",
     "denormalized",
     "denormalizing",
     "healthcheck",
@@ -77,14 +81,19 @@
     "multipart",
     "npmrc",
     "omittable",
+    "ored",
+    "promisifiable",
     "promisify",
     "proxied",
     "pubsub",
     "quintly",
+    "retryable",
     "sourcegraph",
     "styleguide",
     "subquery",
-    "uuidv"
+    "uuidv",
+    "walkthrough",
+    "workdir"
   ],
   "terminal.integrated.rendererType": "dom",
   "quokka.colorizeOutput": false,
@@ -210,9 +219,7 @@
   ],
   "markdown-pdf.highlightStyle": "github.css",
   "gitlens.views.compare.files.layout": "list",
-  "editor.fontSize": 16,
   "editor.columnSelection": false,
-  "editor.minimap.enabled": true,
   "InsertLineNumber.formats": [
     {
       "align": "right",
@@ -235,5 +242,15 @@
       "prefix": "[CODE_",
       "suffix": "]    "
     }
-  ]
+  ],
+  "workbench.editor.scrollToSwitchTabs": true,
+  "highlight-bad-chars.additionalUnicodeChars": [
+      "\u200E",
+      "\u200F"
+  ],
+  "explorer.compactFolders": false,
+  "eslint.codeAction.disableRuleComment": {
+    "location": "sameLine"
+  },
+  "editor.fontSize": 15
 }

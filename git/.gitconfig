@@ -7,3 +7,5 @@
 	ui = true
 [includeIf "gitdir:~/project-workspace/coligo/"]
   path = ~/.gitconfig-coligo
+[pull]
+	rebase = false

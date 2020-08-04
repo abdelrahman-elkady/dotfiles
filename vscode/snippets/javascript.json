@@ -15,6 +15,14 @@
 		"description": "Require a module"
 	},
 
+	"require with same name": {
+		"prefix": "reqn",
+		"body": [
+			"const $1 = require('$1');"
+		],
+		"description": "Require a module with its same name"
+	},
+
 	"JSON stringify to Console": {
 		"prefix": "jsons",
 		"body": [
@@ -46,12 +54,17 @@
 		]
 	},
 
-	"It test block": {
+	"Mocha It test block": {
 		"prefix": ["it"],
 		"body": [
 			"it('$1', async () => {",
 			"\t$2",
 			"});"
 		]
+	},
+
+	"Use Strict Mode": {
+		"prefix": ["strict"],
+		"body": "'use strict';"
 	},
 }
