@@ -1,0 +1,20 @@
+add_newline = false
+
+[character]
+symbol = "➜ "
+
+[line_break]
+disabled = true
+
+[username]
+show_always = true
+
+[nodejs]
+disabled = true
+
+[directory]
+truncate_to_repo = true
+truncation_length = 12
+
+[package]
+symbol = ""
