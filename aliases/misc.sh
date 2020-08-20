@@ -9,3 +9,7 @@ alias gcopy=clip
 
 # https://github.com/localtunnel/localtunnel
 alias tunnel=lt
+
+alias bat=batcat
+
+alias star='eval "$(starship init bash)"'
