@@ -7,3 +7,16 @@ function bump() {
       npm version $1 -m ":arrow_up: Bump version to %s"
     fi
 }
+
+# Create and raise an empty pr
+function trigger-ci() {
+  timestamp=$(date +"%I-%M-%S")
+  branch_name="ci-$timestamp"
+
+  git checkout -b "$branch_name"
+  git commit --allow-empty -m "fix: trigger ci"
+
+  git push origin "$branch_name"
+
+  gh pr create
+}

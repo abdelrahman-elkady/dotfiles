@@ -32,14 +32,14 @@
 	},
 
 	"Module Exports": {
-		"prefix": "mod",
+		"prefix": "expo",
 		"body": [
 			"module.exports = { $1 };"
 		]
 	},
 
 	"Module Exports Default": {
-		"prefix": "modf",
+		"prefix": "expod",
 		"body": [
 			"module.exports = $1;"
 		]

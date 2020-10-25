@@ -41,9 +41,12 @@
     "GRADEBOOK",
     "Hackaround",
     "IGCSE",
+    "Khaled",
     "LOGDNA",
     "Mahmoud",
+    "Mohammadeen",
     "Mutators",
+    "OAUTHENTICATORS",
     "Paypal",
     "Roadmap",
     "Sanitizable",
@@ -60,7 +63,9 @@
     "WEBHOOK",
     "Werd",
     "Youtube",
+    "architecting",
     "backend",
+    "bayan",
     "camelcase",
     "comparator",
     "crowdanalyzer",
@@ -69,6 +74,8 @@
     "denormalized",
     "denormalizing",
     "healthcheck",
+    "kady",
+    "kubernetes",
     "lexisnexis",
     "linebreak",
     "maxlength",
@@ -80,6 +87,7 @@
     "mongod",
     "multipart",
     "npmrc",
+    "oauthenticator",
     "omittable",
     "ored",
     "promisifiable",
@@ -91,8 +99,10 @@
     "sourcegraph",
     "styleguide",
     "subquery",
+    "upsert",
     "uuidv",
     "walkthrough",
+    "whitespaces",
     "workdir"
   ],
   "terminal.integrated.rendererType": "dom",
@@ -252,5 +262,6 @@
   "eslint.codeAction.disableRuleComment": {
     "location": "sameLine"
   },
-  "editor.fontSize": 15
+"editor.fontSize": 15,
+"python.languageServer": "Microsoft"
 }
