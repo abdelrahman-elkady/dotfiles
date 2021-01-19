@@ -2,9 +2,9 @@
 function bump() {
     if [[ -z "$1" ]]; then
       # defaults to bump the patch version
-      npm version patch -m ":arrow_up: Bump version to %s"
+      npm version patch -m "chore: :arrow_up: Bump version to %s"
     else
-      npm version $1 -m ":arrow_up: Bump version to %s"
+      npm version $1 -m "chore: :arrow_up: Bump version to %s"
     fi
 }
 
