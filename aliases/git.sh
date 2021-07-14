@@ -20,3 +20,36 @@ function trigger-ci() {
 
   gh pr create
 }
+
+delete-branches() {
+    echo "this command will delete all branches except (master|main) and the branch you are on"
+    if [[ $1 == '-i' ]]; then
+        echo "You are running in interactive mode"
+    else
+        echo "(warning) you are not running in interactive mode"
+    fi
+
+    read -p "Are you sure (y/n)? " reply
+
+    if [[ ! $reply =~ ^[Yy]$ ]]; then
+        return 0
+    fi
+
+    branch=$(git branch | grep '*' | awk '{print $2}')
+    branches=($(git branch | grep -v "master\|main\|*"))
+
+    for branch in "${branches[@]}"; do
+        if [[ $1 == '-i' ]]; then
+            read -p "Delete ${branch} (y/n)? " reply
+
+            if [[ $reply =~ ^[Yy]$ ]]; then
+                git branch -D ${branch}
+            fi
+        else
+            git branch -D ${branch}
+        fi
+    done
+}
+
+
+
