@@ -1,5 +1,5 @@
 # ssh tunnel
-alias socks='ssh -D 2048 -C -q -N main.do'
+alias socks='ssh -D $SOCKS_PORT -C -q -N main.do'
 
 alias git-clear-tags='git tag -d $(git tag -l)'
 
