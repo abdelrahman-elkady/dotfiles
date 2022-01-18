@@ -38,5 +38,6 @@ function pip() {
 
 source "$HOME/dotfiles/aliases/navigation.sh"
 source "$HOME/dotfiles/aliases/docker.sh"
+source "$HOME/dotfiles/aliases/k8s.sh"
 source "$HOME/dotfiles/aliases/misc.sh"
 source "$HOME/dotfiles/aliases/git.sh"
