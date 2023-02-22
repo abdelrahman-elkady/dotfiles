@@ -22,3 +22,15 @@ function dinteractive() {
     fi
 
 }
+
+# Sad but following this when networking is disrupted in docker, mostly VPN issues
+# https://stackoverflow.com/a/20431030/3357910
+function docker-internet-reset() {
+    echo 'Resetting docker ...'
+    sudo pkill docker
+    sudo iptables -t nat -F
+    sudo ifconfig docker0 down
+    sudo brctl delbr docker0
+    sudo service docker restart
+    echo 'Done!'
+}
