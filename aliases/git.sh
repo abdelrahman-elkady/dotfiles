@@ -50,6 +50,3 @@ delete-branches() {
         fi
     done
 }
-
-
-

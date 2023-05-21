@@ -14,4 +14,4 @@ alias bat=batcat
 
 alias star='eval "$(starship init bash)"'
 
-alias lock-tab='xinput map-to-output "HUION 420 Pen Pen (0)" "DP-3"'
+alias lock-tab='xinput map-to-output "HUION 420 Pen Pen (0)" "DP-1"'

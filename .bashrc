@@ -121,8 +121,10 @@ export DOTFILES="$HOME/dotfiles"
 [[ -s "$DOTFILES/system/env.sh" ]] && source "$DOTFILES/system/env.sh"
 [[ -s "$DOTFILES/system/path.sh" ]] && source "$DOTFILES/system/path.sh"
 [[ -s "$DOTFILES/completions/npm-completion.sh" ]] && source "$DOTFILES/completions/npm-completion.sh"
+[[ -s "$DOTFILES/completions/heroku.sh" ]] && source "$DOTFILES/completions/heroku.sh"
 [[ -s "$DOTFILES/completions/hub-completion.sh" ]] && source "$DOTFILES/completions/hub-completion.sh"
 [[ -s "$DOTFILES/completions/gh-completion.sh" ]] && source "$DOTFILES/completions/gh-completion.sh"
+[[ -s "$DOTFILES/completions/kubectl.sh" ]] && source "$DOTFILES/completions/kubectl.sh"
 
 if [ ! -z "$(ls -A "$DOTFILES/.no-check")" ]; then
    for file in $DOTFILES/.no-check/*; do

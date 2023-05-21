@@ -49,7 +49,18 @@
     },
     {
         "key": "ctrl+shift+f",
-        "command": "eslint.executeAutofix"
+        "command": "eslint.executeAutofix",
+        "when": "editorLangId == typescript || editorLangId == javascript"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "editor.action.format",
+        "when": "editorLangId == go"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "go.action.format",
+        "when": "editorLangId == go"
     },
     {
         "key": "f11",
@@ -194,5 +205,49 @@
         "key": "ctrl+shift+w",
         "command": "-undo_expand_region",
         "when": "editorHasSelection && editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+a",
+        "command": "workbench.action.terminal.searchWorkspace",
+        "when": "terminalFocus && terminalProcessSupported && terminalTextSelected"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "-workbench.action.terminal.searchWorkspace",
+        "when": "terminalFocus && terminalProcessSupported && terminalTextSelected"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "-workbench.view.search",
+        "when": "workbench.view.search.active && neverMatch =~ /doesNotMatch/"
+    },
+    {
+        "key": "alt+left",
+        "command": "workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "ctrl+alt+-",
+        "command": "-workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "alt+right",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    {
+        "key": "ctrl+shift+-",
+        "command": "-workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    {
+        "key": "ctrl+shift+x",
+        "command": "extension.statusBarJSONPath"
+    },
+    {
+        "key": "ctrl+shift+x",
+        "command": "-workbench.view.extensions",
+        "when": "viewContainer.workbench.view.extensions.enabled"
     },
 ]

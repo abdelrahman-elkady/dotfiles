@@ -1,8 +1,11 @@
-alias compose-up='docker-compose up'
-alias cup="docker-compose up -d --build && dinteractive"
+alias compose-up='docker compose up'
 
-alias cdown='docker-compose down'
-alias cdown-f='docker-compose down --rmi local -v'
+function cup() {
+    command docker compose up -d --build && dinteractive $@
+}
+
+alias cdown='docker compose down'
+alias cdown-f='docker compose down --rmi local -v'
 
 alias dpsname='docker ps --format "{{.Names}}"'
 alias dpspretty='docker ps --format "table {{.Image}} \t| {{.Names}} \t| {{.Status}}"'

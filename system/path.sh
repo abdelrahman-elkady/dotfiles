@@ -9,3 +9,5 @@ export PATH=$HOME/Android/Sdk/tools:$PATH
 
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/bin
+
+export PATH=$PATH:/usr/local/go/bin
