@@ -15,9 +15,10 @@ eamodio.gitlens
 EditorConfig.EditorConfig
 eseom.nunjucks-template
 GitHub.copilot
+GitHub.copilot-chat
+GitHub.copilot-labs
 GitHub.vscode-pull-request-github
 golang.go
-joelday.docthis
 johnpapa.vscode-peacock
 letrieu.expand-region
 mikestead.dotenv

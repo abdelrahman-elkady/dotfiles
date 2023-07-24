@@ -336,5 +336,18 @@
 "[python]": {
   "editor.formatOnType": true
 },
-"workbench.colorTheme": "One Monokai"
+"workbench.colorTheme": "One Monokai",
+"files.associations": {
+  ".env*": "dotenv"
+},
+"editor.tokenColorCustomizations": {
+  "textMateRules": [
+    {
+      "scope": "keyword.other.dotenv",
+      "settings": {
+        "foreground": "#FF000000"
+      }
+    }
+  ]
+}
 }
