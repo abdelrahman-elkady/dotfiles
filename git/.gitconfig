@@ -1,5 +1,6 @@
 [core]
 	editor = 'vim'
+	ignoreCase = false
 [user]
 	name = Abdelrahman Elkady
 	email = elkadyabdelrahman@gmail.com
