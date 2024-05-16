@@ -27,3 +27,8 @@ ln -sfv "$DOTFILES_DIR/.tmux.conf" ~
 
 # Starship symlinks
 ln -sfv "$DOTFILES_DIR/starship.toml" ~/.config/starship.toml
+
+# only load homebrew if macos
+if [ "$(uname)" == "Darwin" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
