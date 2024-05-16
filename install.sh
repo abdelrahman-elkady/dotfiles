@@ -19,16 +19,11 @@ ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 # Tmux symlinks
 ln -sfv "$DOTFILES_DIR/.tmux.conf" ~
 
-# Atom symlinks
-ln -sfv $DOTFILES_DIR/atom/config.cson $HOME/.atom/config.cson
-ln -sfv $DOTFILES_DIR/atom/keymap.cson $HOME/.atom/keymap.cson
-ln -sfv $DOTFILES_DIR/atom/packages.txt $HOME/.atom/packages.txt
-ln -sfv $DOTFILES_DIR/atom/styles.less $HOME/.atom/styles.less
-
 # VS Code symlinks
-ln -sfv $DOTFILES_DIR/vscode/settings.json $HOME/.config/Code/User/settings.json
-ln -sfv $DOTFILES_DIR/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
-ln -sfv $DOTFILES_DIR/vscode/snippets/javascript.json $HOME/.config/Code/User/snippets/javascript.json
+# Using settings sync now 🙈
+# ln -sfv $DOTFILES_DIR/vscode/settings.json $HOME/.config/Code/User/settings.json
+# ln -sfv $DOTFILES_DIR/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
+# ln -sfv $DOTFILES_DIR/vscode/snippets/javascript.json $HOME/.config/Code/User/snippets/javascript.json
 
 # Starship symlinks
 ln -sfv "$DOTFILES_DIR/starship.toml" ~/.config/starship.toml
