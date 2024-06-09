@@ -113,6 +113,13 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# enable bash completion on macos
+if [ "$(uname)" == "Darwin" ]; then
+  if [ -f /opt/homebrew/etc/bash_completion ]; then
+    . /opt/homebrew/etc/bash_completion
+  fi
+fi
+
 
 # Exporting dotfiles path
 export DOTFILES="$HOME/dotfiles"
@@ -125,6 +132,7 @@ export DOTFILES="$HOME/dotfiles"
 [[ -s "$DOTFILES/completions/hub-completion.sh" ]] && source "$DOTFILES/completions/hub-completion.sh"
 [[ -s "$DOTFILES/completions/gh-completion.sh" ]] && source "$DOTFILES/completions/gh-completion.sh"
 [[ -s "$DOTFILES/completions/kubectl.sh" ]] && source "$DOTFILES/completions/kubectl.sh"
+[[ -s ~/.git-completion.bash ]] && source ~/.git-completion.bash
 
 if [ ! -z "$(ls -A "$DOTFILES/.no-check")" ]; then
    for file in $DOTFILES/.no-check/*; do
@@ -194,10 +202,11 @@ export NVM_DIR="$HOME/.nvm"
 # GVM
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
-# virtualenvwrapper init script
-# source $HOME/.local/bin/virtualenvwrapper.sh
 
-# eval "$(direnv hook bash)"
+if [ "$(uname)" == "Darwin" ]; then
+  # only load homebrew if macos
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # run starship's alias, enable/disable by commenting
 star
