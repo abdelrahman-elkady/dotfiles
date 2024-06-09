@@ -11,3 +11,8 @@ export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/bin
 
 export PATH=$PATH:/usr/local/go/bin
+
+# macos docker user path
+if [ "$(uname)" == "Darwin" ]; then
+  export PATH=$PATH:$HOME/.docker/bin
+fi
