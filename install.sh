@@ -28,7 +28,13 @@ ln -sfv "$DOTFILES_DIR/.tmux.conf" ~
 # Starship symlinks
 ln -sfv "$DOTFILES_DIR/starship.toml" ~/.config/starship.toml
 
-# only load homebrew if macos
 if [ "$(uname)" == "Darwin" ]; then
+  # only load homebrew if macos
   eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  # install bash completion
+  brew install bash-completion
+
+  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+  chmod +x ~/.git-completion.bash
 fi
