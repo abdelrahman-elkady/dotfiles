@@ -4,13 +4,23 @@ alias audio-restart='alsactl init'
 
 alias open=xdg-open
 
-alias clip='xclip -selection clipboard'
+function clip() {
+  if [[ "$(uname)" == "Darwin" ]]; then
+    pbcopy
+  else
+    xclip -selection clipboard
+  fi
+}
+
 alias gcopy=clip
 
 # https://github.com/localtunnel/localtunnel
 alias tunnel=lt
 
-alias bat=batcat
+if [[ "$(uname)" != "Darwin" ]]; then
+  alias bat=batcat
+fi
+
 
 alias star='eval "$(starship init bash)"'
 
