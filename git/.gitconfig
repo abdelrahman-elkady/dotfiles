@@ -6,7 +6,8 @@
 	email = elkadyabdelrahman@gmail.com
 [color]
 	ui = true
-[includeIf "gitdir:~/project-workspace/coligo/"]
-  path = ~/.gitconfig-coligo
-[pull]
-	rebase = false
+
+# this should include any custom configurations with sensitve info
+# like switching keys/accounts based on the path of a project
+[include]
+	path = ~/dotfiles/.no-check/.gitconfig
