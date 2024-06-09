@@ -7,3 +7,5 @@
 
 # Non tracked custom config
 .no-check
+
+.DS_Store
