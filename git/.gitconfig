@@ -7,6 +7,9 @@
 [color]
 	ui = true
 
+[pull]
+	rebase = false
+
 # this should include any custom configurations with sensitve info
 # like switching keys/accounts based on the path of a project
 [include]
