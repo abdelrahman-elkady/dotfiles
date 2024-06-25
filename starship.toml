@@ -19,3 +19,6 @@ truncation_length = 12
 
 [package]
 symbol = ""
+
+[docker_context]
+disabled = true

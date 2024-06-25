@@ -2,7 +2,9 @@ alias wifi-restart='killall nm-applet; nohup nm-applet &'
 
 alias audio-restart='alsactl init'
 
-alias open=xdg-open
+if [[ "$(uname)" != "Darwin" ]]; then
+  alias open=xdg-open
+fi
 
 function clip() {
   if [[ "$(uname)" == "Darwin" ]]; then
