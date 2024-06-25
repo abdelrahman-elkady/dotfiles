@@ -1,6 +1,7 @@
 [core]
 	editor = 'vim'
 	ignoreCase = false
+	excludesFile = ~/.gitignore_global
 [user]
 	name = Abdelrahman Elkady
 	email = elkadyabdelrahman@gmail.com
