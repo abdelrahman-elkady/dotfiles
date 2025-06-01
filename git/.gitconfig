@@ -5,8 +5,12 @@
 [user]
 	name = Abdelrahman Elkady
 	email = elkadyabdelrahman@gmail.com
+	signingkey = /Users/kady/.ssh/id_ed25519_breadfast_sigining_key
 [color]
 	ui = true
+
+[commit]
+	gpgsign = true
 
 [pull]
 	rebase = false
@@ -15,3 +19,5 @@
 # like switching keys/accounts based on the path of a project
 [include]
 	path = ~/dotfiles/.no-check/.gitconfig
+[gpg]
+	format = ssh
