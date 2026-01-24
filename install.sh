@@ -8,6 +8,15 @@ EXTRA_DIR="$HOME/.extra"
 
 mkdir -p "$HOME/.config"
 
+# Install powerline via uv (cross-platform)
+if command -v uv >/dev/null 2>&1; then
+  echo "Installing powerline-status via uv..."
+  uv tool install powerline-status
+else
+  echo "Warning: uv not found. Install uv first: curl -LsSf https://astral.sh/uv/install.sh | sh"
+  echo "Then run: uv tool install powerline-status"
+fi
+
 # Bash symlinks
 ln -sfv "$DOTFILES_DIR/.bash_profile" ~
 ln -sfv "$DOTFILES_DIR/.bashrc" ~
