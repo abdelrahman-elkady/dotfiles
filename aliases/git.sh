@@ -38,12 +38,21 @@ delete-branches() {
     branch=$(git branch | grep '*' | awk '{print $2}')
     branches=($(git branch | grep -v "master\|main\|*"))
 
+    local green='\033[0;32m'
+    local red='\033[0;31m'
+    local yellow='\033[1;33m'
+    local nc='\033[0m'
+
     for branch in "${branches[@]}"; do
         if [[ $1 == '-i' ]]; then
-            read -p "Delete ${branch} (y/n)? " reply
-
+            echo -ne "Delete ${yellow}${branch}${nc} (y/n)? "
+            read -n 1 reply
+            echo
             if [[ $reply =~ ^[Yy]$ ]]; then
                 git branch -D ${branch}
+                echo -e "${green}Deleted ${branch}${nc}"
+            else
+                echo -e "${red}Skipped ${branch}${nc}"
             fi
         else
             git branch -D ${branch}
