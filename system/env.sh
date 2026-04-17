@@ -15,3 +15,6 @@ export LD_LIBRARY_PATH=/usr/lib
 export WORKON_HOME=~/.python-venvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export EDITOR=vim
+
+export GEMINI_TELEMETRY_ENABLED=false
+export GEMINI_TELEMETRY_LOG_PROMPTS=false
