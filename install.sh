@@ -29,6 +29,10 @@ ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 # Tmux symlinks
 ln -sfv "$DOTFILES_DIR/.tmux.conf" ~
 
+# cmux symlinks (tmux-style keybindings for cmux.app)
+mkdir -p "$HOME/.config/cmux"
+ln -sfv "$DOTFILES_DIR/cmux/cmux.json" "$HOME/.config/cmux/cmux.json"
+
 # VS Code symlinks
 # Using settings sync now 🙈
 # ln -sfv $DOTFILES_DIR/vscode/settings.json $HOME/.config/Code/User/settings.json
