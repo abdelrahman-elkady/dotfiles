@@ -46,6 +46,14 @@ if [ "$(uname)" == "Darwin" ]; then
   # only load homebrew if macos
   eval "$(/opt/homebrew/bin/brew shellenv)"
 
+  # iTerm2 - load settings from the repo's iterm2/ folder and save changes back automatically
+  # (the plist in iterm2/ is auto-saved by iTerm2 and will often be dirty; commit = checkpoint)
+  defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$DOTFILES_DIR/iterm2"
+  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+  # selection: 0 = save on quit, 1 = never, 2 = save automatically
+  defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile -bool true
+  defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile_selection -int 2
+
   # install bash completion
   brew install bash-completion
 
