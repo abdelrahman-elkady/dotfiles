@@ -1,0 +1,238 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+
+  // This file uses JSON with comments (JSONC).
+  // Uncomment and edit any setting to make it file-managed.
+  // Remove a setting to fall back to the value saved in Settings.
+  // cmux creates this template on launch when ~/.config/cmux/cmux.json is missing.
+  // Legacy settings.json files are read only as fallback for keys not present here.
+
+  //   "app" : {
+  //     "focusPaneOnFirstClick" : false,
+  //     "openSupportedFilesInCmux" : true,
+  //     "openMarkdownInCmuxViewer" : false,
+  //     "reorderOnNotification" : true,
+  //     "menuBarOnly" : false,
+  //     "warnBeforeQuit" : true,
+  //     "renameSelectsExistingName" : true,
+  //     "commandPaletteSearchesAllSurfaces" : false,
+  //     "appIcon" : "automatic",
+  //     "sendAnonymousTelemetry" : true,
+  //     "workspaceInheritWorkingDirectory" : true,
+  //     "appearance" : "system",
+  //     "warnBeforeClosingTab" : true,
+  //     "iMessageMode" : false,
+  //     "minimalMode" : false,
+  //     "preferredEditor" : "",
+  //     "newWorkspacePlacement" : "afterCurrent",
+  //     "keepWorkspaceOpenWhenClosingLastSurface" : false,
+  //     "language" : "system"
+  //   },
+
+  //   "terminal" : {
+  //     "showScrollBar" : true,
+  //     "autoResumeAgentSessions" : true
+  //   },
+
+  //   "notifications" : {
+  //     "sound" : "default",
+  //     "showInMenuBar" : true,
+  //     "dockBadge" : true,
+  //     "unreadPaneRing" : true,
+  //     "command" : "",
+  //     "hooks" : [
+  // 
+  //     ],
+  //     "hooksMode" : "append",
+  //     "paneFlash" : true,
+  //     "customSoundFilePath" : ""
+  //   },
+
+  //   "sidebar" : {
+  //     "makePullRequestsClickable" : true,
+  //     "showPullRequests" : true,
+  //     "showNotificationMessage" : true,
+  //     "showPorts" : true,
+  //     "branchLayout" : "vertical",
+  //     "showProgress" : true,
+  //     "showWorkspaceDescription" : true,
+  //     "showBranchDirectory" : true,
+  //     "showCustomMetadata" : true,
+  //     "openPullRequestLinksInCmuxBrowser" : true,
+  //     "showLog" : true,
+  //     "showSSH" : true,
+  //     "hideAllDetails" : false,
+  //     "openPortLinksInCmuxBrowser" : true
+  //   },
+
+  //   "workspaceColors" : {
+  //     "indicatorStyle" : "leftRail",
+  //     "colors" : {
+  //       "Magenta" : "#AD1457",
+  //       "Orange" : "#A04000",
+  //       "Aqua" : "#0E6B8C",
+  //       "Crimson" : "#922B21",
+  //       "Teal" : "#006B6B",
+  //       "Blue" : "#1565C0",
+  //       "Purple" : "#6A1B9A",
+  //       "Amber" : "#7D6608",
+  //       "Navy" : "#1A5276",
+  //       "Rose" : "#880E4F",
+  //       "Charcoal" : "#3E4B5E",
+  //       "Brown" : "#7B3F00",
+  //       "Red" : "#C0392B",
+  //       "Olive" : "#4A5C18",
+  //       "Indigo" : "#283593",
+  //       "Green" : "#196F3D"
+  //     },
+  //     "notificationBadgeColor" : null,
+  //     "selectionColor" : null
+  //   },
+
+  //   "sidebarAppearance" : {
+  //     "lightModeTintColor" : null,
+  //     "matchTerminalBackground" : false,
+  //     "tintColor" : "#000000",
+  //     "tintOpacity" : 0.17999999999999999,
+  //     "darkModeTintColor" : null
+  //   },
+
+  //   "automation" : {
+  //     "claudeBinaryPath" : "",
+  //     "socketControlMode" : "cmuxOnly",
+  //     "claudeCodeIntegration" : true,
+  //     "portBase" : 9100,
+  //     "socketPassword" : "",
+  //     "portRange" : 10,
+  //     "geminiIntegration" : true,
+  //     "cursorIntegration" : true
+  //   },
+
+  //   "browser" : {
+  //     "insecureHttpHostsAllowedInEmbeddedBrowser" : [
+  //       "localhost",
+  //       "*.localhost",
+  //       "127.0.0.1",
+  //       "::1",
+  //       "0.0.0.0",
+  //       "*.localtest.me"
+  //     ],
+  //     "interceptTerminalOpenCommandInCmuxBrowser" : true,
+  //     "reactGrabVersion" : "0.1.29",
+  //     "theme" : "system",
+  //     "openTerminalLinksInCmuxBrowser" : true,
+  //     "hostsToOpenInEmbeddedBrowser" : [
+  // 
+  //     ],
+  //     "urlsToAlwaysOpenExternally" : [
+  // 
+  //     ],
+  //     "showImportHintOnBlankTabs" : true,
+  //     "defaultSearchEngine" : "google",
+  //     "showSearchSuggestions" : true
+  //   },
+
+  //   "shortcuts" : {
+  //     "bindings" : {
+  //       "toggleTerminalCopyMode" : "cmd+shift+m",
+  //       "showBrowserJavaScriptConsole" : "cmd+opt+c",
+  //       "newWindow" : "cmd+shift+n",
+  //       "browserZoomIn" : "cmd+=",
+  //       "renameWorkspace" : "cmd+shift+r",
+  //       "toggleReactGrab" : "cmd+shift+g",
+  //       "openSettings" : "cmd+,",
+  //       "browserForward" : "cmd+]",
+  //       "splitBrowserDown" : "cmd+shift+opt+d",
+  //       "toggleSplitZoom" : "cmd+shift+\r",
+  //       "selectSurfaceByNumber" : "ctrl+1",
+  //       "toggleBrowserDeveloperTools" : "cmd+opt+i",
+  //       "reopenClosedBrowserPanel" : "cmd+shift+t",
+  //       "openBrowser" : "cmd+shift+l",
+  //       "closeOtherTabsInPane" : "cmd+opt+t",
+  //       "closeWindow" : "cmd+ctrl+w",
+  //       "selectWorkspaceByNumber" : "cmd+1",
+  //       "findNext" : "cmd+g",
+  //       "triggerFlash" : "cmd+shift+h",
+  //       "browserZoomReset" : "cmd+0",
+  //       "newSurface" : "cmd+t",
+  //       "splitBrowserRight" : "cmd+opt+d",
+  //       "commandPalette" : "cmd+shift+p",
+  //       "editWorkspaceDescription" : "cmd+opt+e",
+  //       "prevSurface" : "cmd+shift+[",
+  //       "useSelectionForFind" : "cmd+e",
+  //       "browserBack" : "cmd+[",
+  //       "commandPalettePrevious" : "ctrl+p",
+  //       "toggleFileExplorer" : "cmd+opt+b",
+  //       "closeWorkspace" : "cmd+shift+w",
+  //       "quit" : "cmd+q",
+  //       "focusBrowserAddressBar" : "cmd+l",
+  //       "goToWorkspace" : "cmd+p",
+  //       "newTab" : "cmd+n",
+  //       "commandPaletteNext" : "ctrl+n",
+  //       "renameTab" : "cmd+r",
+  //       "focusLeft" : "cmd+opt+←",
+  //       "splitDown" : "cmd+shift+d",
+  //       "showNotifications" : "cmd+i",
+  //       "focusRightSidebar" : "cmd+shift+e",
+  //       "saveFilePreview" : "cmd+s",
+  //       "jumpToUnread" : "cmd+shift+u",
+  //       "markOldestUnreadAndJumpNext" : "cmd+ctrl+u",
+  //       "toggleSidebar" : "cmd+b",
+  //       "browserZoomOut" : "cmd+-",
+  //       "findPrevious" : "cmd+opt+g",
+  //       "closeTab" : "cmd+w",
+  //       "focusRight" : "cmd+opt+→",
+  //       "focusDown" : "cmd+opt+↓",
+  //       "sendFeedback" : "",
+  //       "findInDirectory" : "cmd+shift+f",
+  //       "equalizeSplits" : "cmd+ctrl+=",
+  //       "showHideAllWindows" : "cmd+opt+ctrl+.",
+  //       "nextSurface" : "cmd+shift+]",
+  //       "reloadConfiguration" : "cmd+shift+,",
+  //       "find" : "cmd+f",
+  //       "reopenPreviousSession" : "cmd+shift+o",
+  //       "globalSearch" : "cmd+opt+f",
+  //       "toggleFullScreen" : "cmd+ctrl+f",
+  //       "nextSidebarTab" : "cmd+ctrl+]",
+  //       "prevSidebarTab" : "cmd+ctrl+[",
+  //       "focusUp" : "cmd+opt+↑",
+  //       "hideFind" : "cmd+shift+opt+f",
+  //       "splitRight" : "cmd+d",
+  //       "browserReload" : "cmd+r",
+  //       "openFolder" : "cmd+o"
+  //     }
+  //   },
+
+  // tmux-style bindings mirroring ~/dotfiles/.tmux.conf (prefix = ctrl+a).
+  // This file lives in ~/dotfiles/cmux/ and is symlinked to
+  // ~/.config/cmux/cmux.json by install.sh.
+  // Revert: remove the "shortcuts" block below (or `git revert` in dotfiles),
+  // then run `cmux reload-config`. A pristine pre-edit template also exists at
+  // ~/.config/cmux/cmux.json.bak-20260604-155840.
+  "shortcuts": {
+    "bindings": {
+      // tmux: bind-key v split-window -h (panes side by side)
+      "splitRight": ["ctrl+a", "v"],
+      // tmux: bind-key h split-window (panes stacked)
+      "splitDown": ["ctrl+a", "h"],
+      // tmux: bind c new-window
+      "newSurface": ["ctrl+a", "c"],
+      // tmux: bind r source-file ~/.tmux.conf
+      "reloadConfiguration": ["ctrl+a", "r"],
+      // tmux: bind-key C-a last-window (closest cmux equivalent: focus history)
+      "focusHistoryBack": ["ctrl+a", "ctrl+a"],
+      // tmux: Ctrl-arrow pane navigation (alt+left/right kept free for word-motion)
+      "focusLeft": "ctrl+←",
+      "focusRight": "ctrl+→",
+      "focusUp": "ctrl+↑",
+      "focusDown": "ctrl+↓",
+      // tmux: Shift-Left/Right window switching → cmux tabs (surfaces)
+      "prevSurface": "shift+←",
+      "nextSurface": "shift+→",
+      // extra: Shift-Up/Down for workspace switching (no tmux equivalent)
+      "prevSidebarTab": "shift+↑",
+      "nextSidebarTab": "shift+↓"
+    }
+  },
+}
