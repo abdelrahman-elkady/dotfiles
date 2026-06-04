@@ -33,6 +33,12 @@ ln -sfv "$DOTFILES_DIR/.tmux.conf" ~
 mkdir -p "$HOME/.config/cmux"
 ln -sfv "$DOTFILES_DIR/cmux/cmux.json" "$HOME/.config/cmux/cmux.json"
 
+# cmux terminal appearance (cmux embeds Ghostty; mirrors the iTerm2 theme/font)
+# config.ghostty is read by cmux only — standalone Ghostty reads ghostty/config
+# Revert: rm ~/.config/ghostty/config.ghostty, then reload cmux config (ctrl+a r)
+mkdir -p "$HOME/.config/ghostty"
+ln -sfv "$DOTFILES_DIR/cmux/config.ghostty" "$HOME/.config/ghostty/config.ghostty"
+
 # VS Code symlinks
 # Using settings sync now 🙈
 # ln -sfv $DOTFILES_DIR/vscode/settings.json $HOME/.config/Code/User/settings.json
