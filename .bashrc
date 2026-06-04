@@ -210,3 +210,9 @@ fi
 
 # run starship's alias, enable/disable by commenting
 star
+
+# Emit OSC 7 for Ghostty terminal to track working directory
+function _emit_osc7() {
+    printf "\033]7;file://%s%s\033\\" "${HOSTNAME}" "${PWD}"
+}
+PROMPT_COMMAND="${PROMPT_COMMAND:-};_emit_osc7"
