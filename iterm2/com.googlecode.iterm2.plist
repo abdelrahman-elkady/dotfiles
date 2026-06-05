@@ -2395,19 +2395,6 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0xd-0x20000-0x24</key>
-		<dict>
-			<key>Action</key>
-			<integer>12</integer>
-			<key>Keycode</key>
-			<integer>13</integer>
-			<key>Modifiers</key>
-			<integer>131072</integer>
-			<key>Text</key>
-			<string>\n</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
 		<key>0xf700-0x300000</key>
 		<dict>
 			<key>Action</key>
@@ -3642,7 +3629,7 @@
 					<key>Escaping</key>
 					<integer>2</integer>
 					<key>Text</key>
-					<string>b</string>
+					<string>[1;3D</string>
 					<key>Version</key>
 					<integer>2</integer>
 				</dict>
@@ -3689,7 +3676,7 @@
 					<key>Escaping</key>
 					<integer>2</integer>
 					<key>Text</key>
-					<string>f</string>
+					<string>[1;3C</string>
 					<key>Version</key>
 					<integer>2</integer>
 				</dict>
@@ -3914,7 +3901,7 @@
 			<key>Normal Font</key>
 			<string>Monaco 12</string>
 			<key>Option Key Sends</key>
-			<integer>0</integer>
+			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
 			<false/>
 			<key>Right Option Key Sends</key>
@@ -3924,7 +3911,7 @@
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
-			<integer>5000</integer>
+			<integer>10000</integer>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -4070,7 +4057,7 @@
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string>~/</string>
+			<string>~</string>
 		</dict>
 	</array>
 	<key>OpenArrangementAtStartup</key>
