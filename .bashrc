@@ -133,6 +133,7 @@ export DOTFILES="$HOME/dotfiles"
 [[ -s "$DOTFILES/completions/gh-completion.sh" ]] && source "$DOTFILES/completions/gh-completion.sh"
 [[ -s "$DOTFILES/completions/kubectl.sh" ]] && source "$DOTFILES/completions/kubectl.sh"
 [[ -s ~/.git-completion.bash ]] && source ~/.git-completion.bash
+[[ -s "$DOTFILES/cmux/auto-rename.sh" ]] && source "$DOTFILES/cmux/auto-rename.sh"
 
 if [ ! -z "$(ls -A "$DOTFILES/.no-check")" ]; then
    for file in $DOTFILES/.no-check/*; do
@@ -215,4 +216,12 @@ star
 function _emit_osc7() {
     printf "\033]7;file://%s%s\033\\" "${HOSTNAME}" "${PWD}"
 }
+
+# If VS Code or another terminal inherited the PROMPT_COMMAND from cmux,
+# the _cmux_prompt_command function might not be defined. Provide a dummy one.
+if ! type _cmux_prompt_command >/dev/null 2>&1; then
+    function _cmux_prompt_command() { :; }
+fi
+
 PROMPT_COMMAND="${PROMPT_COMMAND:-};_emit_osc7"
+
