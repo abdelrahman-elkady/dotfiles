@@ -216,8 +216,9 @@
       "splitRight": ["ctrl+a", "v"],
       // tmux: bind-key h split-window (panes stacked)
       "splitDown": ["ctrl+a", "h"],
-      // tmux: bind c new-window
-      "newSurface": ["ctrl+a", "c"],
+      // tmux: bind c new-window → cmux "new workspace" (newTab = Cmd-N creates a
+      // workspace; newSurface would only add a terminal to the current workspace)
+      "newTab": ["ctrl+a", "c"],
       // tmux: bind r source-file ~/.tmux.conf
       "reloadConfiguration": ["ctrl+a", "r"],
       // tmux: bind-key C-a last-window (closest cmux equivalent: focus history)
