@@ -223,5 +223,5 @@ if ! type _cmux_prompt_command >/dev/null 2>&1; then
     function _cmux_prompt_command() { :; }
 fi
 
-PROMPT_COMMAND="${PROMPT_COMMAND:-};_emit_osc7"
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }_emit_osc7"
 

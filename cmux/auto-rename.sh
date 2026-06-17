@@ -2,8 +2,11 @@
 # cmux Auto-Renaming (Mimicking tmux logic)
 # ==========================================
 
-# Only run if we are in cmux AND NOT inside VS Code's integrated terminal
-if [[ -n "$CMUX_WORKSPACE_ID" ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
+# Only run if we are in cmux AND NOT inside VS Code's integrated terminal AND
+# NOT inside tmux. (A tmux server started from within cmux bakes
+# CMUX_WORKSPACE_ID into its environment and leaks it to every pane — including
+# ones later opened from iTerm2 — so $CMUX_WORKSPACE_ID alone isn't enough.)
+if [[ -n "$CMUX_WORKSPACE_ID" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$TMUX" ]]; then
     
     # State variable to track if auto-rename is enabled for this session
     export CMUX_AUTO_RENAME_ENABLED=1
@@ -58,8 +61,10 @@ if [[ -n "$CMUX_WORKSPACE_ID" ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
         fi
     }
 
-    # Safely append to PROMPT_COMMAND to prevent infinite duplication in subshells
+    # Safely append to PROMPT_COMMAND to prevent infinite duplication in subshells.
+    # Use :+ so the separating ';' is only added when PROMPT_COMMAND is non-empty,
+    # otherwise a leading ';' produces "syntax error near unexpected token ';'".
     if [[ "$PROMPT_COMMAND" != *"_cmux_rename_idle"* ]]; then
-        PROMPT_COMMAND="${PROMPT_COMMAND:-};_cmux_rename_idle"
+        PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }_cmux_rename_idle"
     fi
 fi
