@@ -7,7 +7,7 @@
 # CMUX_WORKSPACE_ID into its environment and leaks it to every pane — including
 # ones later opened from iTerm2 — so $CMUX_WORKSPACE_ID alone isn't enough.)
 if [[ -n "$CMUX_WORKSPACE_ID" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$TMUX" ]]; then
-    
+
     # State variable to track if auto-rename is enabled for this session
     export CMUX_AUTO_RENAME_ENABLED=1
 
@@ -25,40 +25,12 @@ if [[ -n "$CMUX_WORKSPACE_ID" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "
         echo "Auto-renaming resumed."
     }
 
-    # Triggered when the shell is idle (waiting for input)
+    # Rename the workspace to the current directory's basename, on every prompt.
+    # (We intentionally do NOT track the running command via a DEBUG trap: bash
+    # allows only one DEBUG trap and starship already uses it for command timing.)
     function _cmux_rename_idle() {
-        # Install the DEBUG trap *only* after the shell has fully loaded
-        # This prevents the trap from firing thousands of times during .bashrc/NVM initialization!
-        if [[ "$_CMUX_TRAP_INSTALLED" != "1" ]]; then
-            export _CMUX_TRAP_INSTALLED=1
-            trap '_cmux_rename_running' DEBUG
-        fi
-
-        if [[ "$CMUX_AUTO_RENAME_ENABLED" == "0" ]]; then return; fi
+        [[ "$CMUX_AUTO_RENAME_ENABLED" == "0" ]] && return
         cmux rename-workspace "${PWD##*/}" > /dev/null 2>&1
-    }
-
-    # Triggered right before a command starts executing
-    function _cmux_rename_running() {
-        if [[ "$CMUX_AUTO_RENAME_ENABLED" == "0" ]]; then return; fi
-        
-        local cmd="$BASH_COMMAND"
-        local dir_name="${PWD##*/}"
-
-        # Ignore silent prompt evaluations and background scripts
-        if [[ "$cmd" == _cmux_* ]] || [[ "$cmd" == printf* ]] || [[ "$cmd" == starship* ]] || [[ "$cmd" == _emit_osc7* ]]; then
-            return
-        fi
-
-        # Check the running command and format accordingly
-        if [[ "$cmd" == *"claude"* ]]; then
-            (cmux rename-workspace "[✴]$dir_name" > /dev/null 2>&1 &)
-        elif [[ "$cmd" == *"agy"* ]]; then
-            (cmux rename-workspace "[Δ]$dir_name" > /dev/null 2>&1 &)
-        else
-            # For anything else, extract just the first word of the command
-            (cmux rename-workspace "${cmd%% *}" > /dev/null 2>&1 &)
-        fi
     }
 
     # Safely append to PROMPT_COMMAND to prevent infinite duplication in subshells.
