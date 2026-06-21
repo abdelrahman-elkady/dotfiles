@@ -48,6 +48,17 @@ mkdir -p "$HOME/.config/opencode/themes"
 ln -sfv "$DOTFILES_DIR/opencode/themes/breeze.json" "$HOME/.config/opencode/themes/breeze.json"
 ln -sfv "$DOTFILES_DIR/opencode/tui.json" "$HOME/.config/opencode/tui.json"
 
+# Claude Code global config (portable across machines)
+# settings.json holds shared, non-secret config (plugins, effort, statusline, etc.);
+# statusline-command.sh is the script settings.json points at to render the status line.
+# Machine-specific overrides belong in ~/.claude/settings.local.json (untracked) so
+# this shared file stays clean. Note: settings.json references statusline-command.sh
+# by absolute path, so this assumes the same $HOME across machines.
+# Revert: rm ~/.claude/settings.json ~/.claude/statusline-command.sh (restore from a backup if needed).
+mkdir -p "$HOME/.claude"
+ln -sfv "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
+ln -sfv "$DOTFILES_DIR/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
+
 # VS Code symlinks
 # Using settings sync now 🙈
 # ln -sfv $DOTFILES_DIR/vscode/settings.json $HOME/.config/Code/User/settings.json
