@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Claude Code status line — two-line, Starship-flavoured.
 #
-#   line 1:  MODEL │ Context: [████▒▒▒▒▒▒] 250k/1M (25%)    Limit: [█████▒▒▒▒▒] N% · Xh Ym left
-#   line 2:  repo-anchored cwd  │  branch   (cwd is full path with ~ when outside a git repo)
+#   line 1:  MODEL effort │ Context: [████▒▒▒▒▒▒] 250k/1M (25%)    Limit: [█████▒▒▒▒▒] N% · Xh Ym left
+#   line 2:  repo-anchored cwd  │  branch ⑂ worktree   (cwd is full path with ~ when outside a git repo)
 #
 # Both gauges share one render_bar widget. The context bar's fill tracks the % of
 # the window used, coloured by the RAW used-token count (100k/150k/200k thresholds).
@@ -19,12 +19,14 @@ BAR_WIDTH=20          # cells in the context bar
 BAR_FILL='█'          # filled cell  (U+2588)
 BAR_EMPTY='▒'         # empty cell   (U+2592)
 BRANCH_GLYPH=$'\xee\x82\xa0'  # U+E0A0 powerline branch — byte-encoded so this PUA glyph survives editors; rendered via the PowerlineSymbols font
+WT_GLYPH='⑂'          # U+2442 fork — marks a linked git worktree (swap for a nerd-font worktree icon if you prefer)
 MARGIN=4              # right-align safety margin (Claude's render area < raw cols)
 
 # ── Colours (literal \033 — expanded with %b at print time) ──────────────────
 C_RESET='\033[00m'
 C_MODEL='\033[01;33m'        # yellow bold
 C_BRANCH='\033[31m'          # red
+C_WORKTREE='\033[38;5;37m'   # teal — linked-worktree name beside the branch
 C_CWD='\033[01;34m'          # blue bold
 C_GREY='\033[38;5;245m'      # separators / labels
 C_DIM='\033[02;37m'          # dim grey numerals
@@ -33,6 +35,7 @@ GRADE_GREEN='\033[01;32m'
 GRADE_YELLOW='\033[01;33m'
 GRADE_ORANGE='\033[1;38;5;208m'
 GRADE_RED='\033[01;31m'
+GRADE_MAX='\033[01;38;5;201m'   # hot magenta — one tier above red, for effort:max
 
 sep=" ${C_GREY}│${C_RESET} "  # inter-segment divider on line 1
 
@@ -46,6 +49,20 @@ grade_color() {  # value  t_yellow  t_orange  t_red
     elif [ "$1" -ge "$2" ] 2>/dev/null; then REPLY=$GRADE_YELLOW
     else                                      REPLY=$GRADE_GREEN
     fi
+}
+
+# Map the reasoning-effort tier onto its own hot ladder: the higher the effort,
+# the hotter the colour, with `max` sitting one step above red on bright magenta.
+# Anything unrecognised (or an unsupported-model empty string) falls to grey.
+effort_color() {  # level
+    case "$1" in
+        low)    REPLY=$GRADE_GREEN  ;;
+        medium) REPLY=$GRADE_YELLOW ;;
+        high)   REPLY=$GRADE_ORANGE ;;
+        xhigh)  REPLY=$GRADE_RED    ;;
+        max)    REPLY=$GRADE_MAX    ;;
+        *)      REPLY=$C_GREY       ;;
+    esac
 }
 
 # Format a token count compactly: 850 -> 850, 250000 -> 250k, 1000000 -> 1M.
@@ -102,9 +119,11 @@ vlen() {
 # used_tokens prefers context_window.total_input_tokens (current context, input
 # + cache, matches used_percentage); falls back to summing current_usage for
 # older payloads. context_window_size is 1000000 on extended-context models.
-IFS=$'\t' read -r model cwd window used_tokens five_pct five_resets < <(
+IFS=$'\t' read -r model effort worktree cwd window used_tokens five_pct five_resets < <(
     echo "$input" | jq -r '
         [ (.model.display_name // ""),
+          (.effort.level // "none"),
+          (.workspace.git_worktree // "none"),
           (.workspace.current_dir // .cwd // ""),
           (.context_window.context_window_size // 200000),
           (.context_window.total_input_tokens
@@ -119,6 +138,14 @@ IFS=$'\t' read -r model cwd window used_tokens five_pct five_resets < <(
 case "$window"      in ''|*[!0-9]*) window=200000 ;; esac
 case "$used_tokens" in ''|*[!0-9]*) used_tokens=0 ;; esac
 [ "$window" -le 0 ] 2>/dev/null && window=200000
+
+# effort and worktree are *middle* TSV columns, so an empty value would be a bare
+# consecutive tab — and since tab is IFS whitespace, `read` would collapse it and
+# shift every later field. jq therefore emits the sentinel "none" for an absent
+# effort (unsupported model) or worktree (main working tree); map them back to
+# empty here so the render simply omits each segment.
+[ "$effort"   = none ] && effort=""
+[ "$worktree" = none ] && worktree=""
 
 # ── Git context ──────────────────────────────────────────────────────────────
 git_root=$(git -C "$cwd" --no-optional-locks rev-parse --show-toplevel 2>/dev/null)
@@ -174,8 +201,14 @@ if [ -n "$five_pct" ]; then
     [ -n "$five_hour_remaining" ] && five_hour_rendered+="${C_DIM} · ${five_hour_remaining} left${C_RESET}"
 fi
 
-# ── Assemble line 1: MODEL │ bar  ……  limit (right-aligned) ──────────────────
-left1="${C_MODEL}${model}${C_RESET}${sep}${bar_segment}"
+# ── Assemble line 1: MODEL effort │ bar  ……  limit (right-aligned) ───────────
+# Effort tier is an inline suffix on the model name, coloured by its own hot
+# ladder. Absent (empty) on models that don't expose the effort parameter.
+left1="${C_MODEL}${model}${C_RESET}"
+if [ -n "$effort" ]; then
+    effort_color "$effort"; left1="${left1} ${REPLY}${effort}${C_RESET}"
+fi
+left1="${left1}${sep}${bar_segment}"
 
 right1="$five_hour_rendered"
 
@@ -202,4 +235,10 @@ else
 fi
 line2="${C_CWD}${cwd_display}${C_RESET}"
 [ -n "$git_branch" ] && line2="${line2}${sep}${C_BRANCH}${BRANCH_GLYPH} ${git_branch}${C_RESET}"
+# Worktree follows the branch (grouped, no extra divider) when the cwd is inside a
+# linked git worktree; starts its own segment if there's no branch (detached HEAD).
+if [ -n "$worktree" ]; then
+    [ -n "$git_branch" ] && wt_lead=" " || wt_lead="$sep"
+    line2="${line2}${wt_lead}${C_WORKTREE}${WT_GLYPH} ${worktree}${C_RESET}"
+fi
 printf '%b' "$line2"
