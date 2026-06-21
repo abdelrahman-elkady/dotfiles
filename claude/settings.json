@@ -10,7 +10,6 @@
     "command": "bash /Users/kady/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
-    "claude-md-management@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
@@ -21,18 +20,6 @@
       "source": {
         "source": "github",
         "repo": "OthmanAdi/planning-with-files"
-      }
-    },
-    "elkady-plugins": {
-      "source": {
-        "source": "directory",
-        "path": "/Volumes/projects-workspace/playground/ai-board"
-      }
-    },
-    "progress-report": {
-      "source": {
-        "source": "github",
-        "repo": "abdelrahman-elkady/progress-report"
       }
     }
   },
