@@ -227,4 +227,4 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }_emit_osc7"
 
 
 # opencode
-export PATH=/Users/kady/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"

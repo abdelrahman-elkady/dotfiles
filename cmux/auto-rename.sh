@@ -21,6 +21,7 @@ if [[ -n "$CMUX_WORKSPACE_ID" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "
     # Command to resume auto-renaming
     function cauto() {
         export CMUX_AUTO_RENAME_ENABLED=1
+        _CMUX_RENAME_LAST_PWD=""
         _cmux_rename_idle
         echo "Auto-renaming resumed."
     }
@@ -30,6 +31,8 @@ if [[ -n "$CMUX_WORKSPACE_ID" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "
     # allows only one DEBUG trap and starship already uses it for command timing.)
     function _cmux_rename_idle() {
         [[ "$CMUX_AUTO_RENAME_ENABLED" == "0" ]] && return
+        [[ "$PWD" == "$_CMUX_RENAME_LAST_PWD" ]] && return
+        _CMUX_RENAME_LAST_PWD="$PWD"
         cmux rename-workspace "${PWD##*/}" > /dev/null 2>&1
     }
 
