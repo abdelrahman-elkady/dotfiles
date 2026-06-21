@@ -39,6 +39,15 @@ ln -sfv "$DOTFILES_DIR/cmux/cmux.json" "$HOME/.config/cmux/cmux.json"
 mkdir -p "$HOME/.config/ghostty"
 ln -sfv "$DOTFILES_DIR/cmux/config.ghostty" "$HOME/.config/ghostty/config.ghostty"
 
+# opencode theme + TUI selection (mirrors the iTerm2/cmux Breeze palette)
+# breeze.json is a dark theme built from iterm2/com.googlecode.iterm2.plist's
+# KDE Breeze scheme (customized reds); tui.json pins /theme to "breeze".
+# Revert: rm ~/.config/opencode/themes/breeze.json ~/.config/opencode/tui.json,
+# then restart opencode and pick another theme with /theme.
+mkdir -p "$HOME/.config/opencode/themes"
+ln -sfv "$DOTFILES_DIR/opencode/themes/breeze.json" "$HOME/.config/opencode/themes/breeze.json"
+ln -sfv "$DOTFILES_DIR/opencode/tui.json" "$HOME/.config/opencode/tui.json"
+
 # VS Code symlinks
 # Using settings sync now 🙈
 # ln -sfv $DOTFILES_DIR/vscode/settings.json $HOME/.config/Code/User/settings.json

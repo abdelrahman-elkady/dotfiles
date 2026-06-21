@@ -1,0 +1,88 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+
+  "defs": {
+    "bg":          "#31363b",
+    "bgView":      "#232629",
+    "bgRaised":    "#3b4045",
+    "border":      "#5c6166",
+    "borderSubtle":"#3b4045",
+
+    "fg":          "#eff0f1",
+    "fgMuted":     "#bdc3c7",
+    "fgDim":       "#7f8c8d",
+
+    "red":         "#ed7366",
+    "redBright":   "#ea3b24",
+    "green":       "#11d116",
+    "greenBright": "#1cdc9a",
+    "yellow":      "#f67400",
+    "yellowBright":"#fdbc4b",
+    "blue":        "#1d99f3",
+    "blueBright":  "#3daee9",
+    "magenta":     "#9b59b6",
+    "magentaBright":"#8e44ad",
+    "cyan":        "#1abc9c",
+    "cyanBright":  "#16a085",
+    "white":       "#fcfcfc"
+  },
+
+  "theme": {
+    "primary":      "blue",
+    "secondary":    "blueBright",
+    "accent":       "cyan",
+    "error":        "red",
+    "warning":      "yellow",
+    "success":      "green",
+    "info":         "blueBright",
+
+    "text":         "fg",
+    "textMuted":    "fgMuted",
+
+    "background":          "bg",
+    "backgroundPanel":     "bgView",
+    "backgroundElement":   "bgRaised",
+
+    "border":       "border",
+    "borderActive": "blue",
+    "borderSubtle": "borderSubtle",
+
+    "diffAdded":             "green",
+    "diffRemoved":           "red",
+    "diffContext":           "fgMuted",
+    "diffHunkHeader":        "fgDim",
+    "diffHighlightAdded":    "greenBright",
+    "diffHighlightRemoved":  "redBright",
+    "diffAddedBg":           "bgView",
+    "diffRemovedBg":         "bgView",
+    "diffContextBg":         "bg",
+    "diffLineNumber":        "fgDim",
+    "diffAddedLineNumberBg":   "bgRaised",
+    "diffRemovedLineNumberBg": "bgRaised",
+
+    "markdownText":             "fg",
+    "markdownHeading":          "blue",
+    "markdownLink":             "blueBright",
+    "markdownLinkText":         "cyan",
+    "markdownCode":             "greenBright",
+    "markdownBlockQuote":       "fgDim",
+    "markdownEmph":             "yellow",
+    "markdownStrong":           "yellowBright",
+    "markdownHorizontalRule":   "border",
+    "markdownListItem":         "blue",
+    "markdownListEnumeration":  "cyan",
+    "markdownImage":            "blueBright",
+    "markdownImageText":        "cyan",
+    "markdownCodeBlock":        "fg",
+
+    "syntaxComment":     "fgDim",
+    "syntaxKeyword":     "magenta",
+    "syntaxFunction":    "blue",
+    "syntaxVariable":    "fg",
+    "syntaxString":      "green",
+    "syntaxNumber":      "yellow",
+    "syntaxType":        "cyan",
+    "syntaxOperator":    "magenta",
+    "syntaxPunctuation": "fgMuted"
+  }
+}
