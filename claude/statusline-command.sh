@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 # Claude Code status line — two-line, Starship-flavoured.
 #
-#   line 1:  MODEL │  branch │ Context: [████▒▒▒▒▒▒] 250k/1M (25%)      limit:(N% - Xh Ym remaining)
-#   line 2:  repo-anchored cwd  (full path with ~ when outside a git repo)
+#   line 1:  MODEL │ Context: [████▒▒▒▒▒▒] 250k/1M (25%)    Limit: [█████▒▒▒▒▒] N% · Xh Ym left
+#   line 2:  repo-anchored cwd  │  branch   (cwd is full path with ~ when outside a git repo)
 #
-# The context bar replaces the old separate ctx% and token-breakdown segments:
-# its fill length tracks the % of the window used, while its colour is graded by
-# the RAW used-token count (the same 100k/150k/200k thresholds we've always used).
-# The right-aligned 5-hour limit segment is kept verbatim from the old line.
+# Both gauges share one render_bar widget. The context bar's fill tracks the % of
+# the window used, coloured by the RAW used-token count (100k/150k/200k thresholds).
+# The right-aligned 5-hour Limit bar's fill+colour track the quota % (50/75/90),
+# followed by the exact % and the time until reset; the "Xh Ym left" tail drops
+# once the window has reset.
 #
 # This runs on every render, so the helpers below set $REPLY (or use `printf -v`)
 # instead of printing — call sites avoid a $()-subshell fork on the hot path.
@@ -57,6 +58,30 @@ fmt_tokens() {
         REPLY="$(( (n + 500) / 1000 ))k"
     else
         REPLY="$n"
+    fi
+}
+
+# Render a BAR_WIDTH-cell gauge "[████▒▒▒▒]" — `filled` graded cells coloured by
+# $2, the rest dim, brackets grey. Sets $REPLY. Fork-free (printf -v + glyph
+# swap). Shared by the context and 5-hour limit segments so both look identical.
+render_bar() {  # filled  grade-colour
+    local filled=$1 grade=$2 fill empty
+    [ "$filled" -lt 0 ] && filled=0
+    [ "$filled" -gt "$BAR_WIDTH" ] && filled=$BAR_WIDTH
+    printf -v fill  '%*s' "$filled"                   ''
+    printf -v empty '%*s' "$(( BAR_WIDTH - filled ))" ''
+    fill=${fill// /"$BAR_FILL"}
+    empty=${empty// /"$BAR_EMPTY"}
+    REPLY="${C_GREY}[${C_RESET}${grade}${fill}${C_RESET}${C_EMPTY}${empty}${C_RESET}${C_GREY}]${C_RESET}"
+}
+
+# Format a duration (seconds) compactly: 8580 -> "2h 23m", 2580 -> "43m",
+# 7200 -> "2h". Drops any zero unit. Sets $REPLY.
+fmt_remaining() {
+    local h=$(( $1 / 3600 )) m=$(( ($1 % 3600) / 60 ))
+    if   [ "$h" -gt 0 ] && [ "$m" -gt 0 ]; then REPLY="${h}h ${m}m"
+    elif [ "$h" -gt 0 ];                   then REPLY="${h}h"
+    else                                        REPLY="${m}m"
     fi
 }
 
@@ -120,47 +145,37 @@ fi
 # Fill length is proportional to window usage; colour is graded by raw tokens.
 pct_int=$(( used_tokens * 100 / window ))
 filled=$(( (used_tokens * BAR_WIDTH + window / 2) / window ))
-[ "$filled" -lt 0 ] && filled=0
-[ "$filled" -gt "$BAR_WIDTH" ] && filled=$BAR_WIDTH
 
 grade_color "$used_tokens" 100000 150000 200000; grade=$REPLY
-
-# Build the bar fork-free: pad N spaces, then swap each space for the cell glyph.
-printf -v bar_fill  '%*s' "$filled"                   ''
-printf -v bar_empty '%*s' "$(( BAR_WIDTH - filled ))" ''
-bar_fill=${bar_fill// /"$BAR_FILL"}
-bar_empty=${bar_empty// /"$BAR_EMPTY"}
+render_bar "$filled" "$grade"; bar=$REPLY
 
 fmt_tokens "$used_tokens"; used_fmt=$REPLY
 fmt_tokens "$window";      win_fmt=$REPLY
-bar_segment="${C_GREY}Context: [${C_RESET}${grade}${bar_fill}${C_RESET}${C_EMPTY}${bar_empty}${C_RESET}${C_GREY}] ${C_RESET}${C_DIM}${used_fmt}/${win_fmt} ${C_RESET}${grade}(${pct_int}%)${C_RESET}"
+bar_segment="${C_GREY}Context: ${C_RESET}${bar} ${C_DIM}${used_fmt}/${win_fmt} ${C_RESET}${grade}(${pct_int}%)${C_RESET}"
 
-# ── 5-hour rate-limit segment (kept verbatim — right-aligned on line 1) ───────
-# Time remaining in the 5-hour window, "Xh Ym", blank once the window resets.
+# ── 5-hour rate-limit segment (right-aligned on line 1) ───────────────────────
+# Reuses render_bar: fill+colour track the quota %, graded at 50/75/90. Reads
+# "Limit: [██▒▒…] 47% · 2h 13m left"; the "Xh Ym left" tail is dropped once
+# the window has reset (no time remaining).
 five_hour_remaining=""
 if [ -n "$five_resets" ]; then
-    now=$(date +%s)
-    rem=$(( five_resets - now ))
-    if [ "$rem" -gt 0 ] 2>/dev/null; then
-        five_hour_remaining="$(( rem / 3600 ))h $(( (rem % 3600) / 60 ))m"
-    fi
+    rem=$(( five_resets - $(date +%s) ))
+    [ "$rem" -gt 0 ] 2>/dev/null && { fmt_remaining "$rem"; five_hour_remaining=$REPLY; }
 fi
 
 five_hour_rendered=""
 if [ -n "$five_pct" ]; then
-    grade_color "${five_pct%%.*}" 50 75 90; five_color=$REPLY   # grade by truncated %
-    printf -v five_disp '%.0f' "$five_pct"                      # display rounded %
-    if [ -n "$five_hour_remaining" ]; then
-        five_hour_rendered="${five_color}limit:(${five_disp}%${C_RESET}${C_DIM} - ${five_hour_remaining} remaining)${C_RESET}"
-    else
-        five_hour_rendered="${five_color}limit:${five_disp}%${C_RESET}"
-    fi
+    five_int=${five_pct%%.*}
+    grade_color "$five_int" 50 75 90; five_color=$REPLY                       # grade by truncated %
+    render_bar "$(( (five_int * BAR_WIDTH + 50) / 100 ))" "$five_color"       # round % to a cell count
+    limit_bar=$REPLY
+    printf -v five_disp '%.0f' "$five_pct"                                    # display rounded %
+    five_hour_rendered="${C_GREY}Limit: ${C_RESET}${limit_bar} ${five_color}${five_disp}%${C_RESET}"
+    [ -n "$five_hour_remaining" ] && five_hour_rendered+="${C_DIM} · ${five_hour_remaining} left${C_RESET}"
 fi
 
-# ── Assemble line 1: MODEL │ branch │ bar  ……  limit (right-aligned) ─────────
-left1="${C_MODEL}${model}${C_RESET}"
-[ -n "$git_branch" ] && left1="${left1}${sep}${C_BRANCH}${BRANCH_GLYPH} ${git_branch}${C_RESET}"
-left1="${left1}${sep}${bar_segment}"
+# ── Assemble line 1: MODEL │ bar  ……  limit (right-aligned) ──────────────────
+left1="${C_MODEL}${model}${C_RESET}${sep}${bar_segment}"
 
 right1="$five_hour_rendered"
 
@@ -185,4 +200,6 @@ if [ -n "$right1" ]; then
 else
     printf '%b\n' "$left1"
 fi
-printf '%b' "${C_CWD}${cwd_display}${C_RESET}"
+line2="${C_CWD}${cwd_display}${C_RESET}"
+[ -n "$git_branch" ] && line2="${line2}${sep}${C_BRANCH}${BRANCH_GLYPH} ${git_branch}${C_RESET}"
+printf '%b' "$line2"
