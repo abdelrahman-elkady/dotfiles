@@ -223,17 +223,22 @@
       "reloadConfiguration": ["ctrl+a", "r"],
       // tmux: bind-key C-a last-window (closest cmux equivalent: focus history)
       "focusHistoryBack": ["ctrl+a", "ctrl+a"],
+      // cmux 0.64.16 (PR #6002) force-routes any arrow chord WITHOUT Cmd straight
+      // to the focused terminal, before app-shortcut resolution — so a bare
+      // ctrl/shift + arrow leaks to the shell instead of firing. Every arrow
+      // binding below therefore carries ⌘, matching cmux's own defaults
+      // (focus = ⌥⌘arrow, workspace = ⌃⌘[ / ⌃⌘]).
       // tmux: Ctrl-arrow pane navigation (alt+left/right kept free for word-motion)
-      "focusLeft": "ctrl+←",
-      "focusRight": "ctrl+→",
-      "focusUp": "ctrl+↑",
-      "focusDown": "ctrl+↓",
+      "focusLeft": "cmd+ctrl+←",
+      "focusRight": "cmd+ctrl+→",
+      "focusUp": "cmd+ctrl+↑",
+      "focusDown": "cmd+ctrl+↓",
       // tmux: Shift-Left/Right window switching → cmux tabs (surfaces)
-      "prevSurface": "shift+←",
-      "nextSurface": "shift+→",
+      "prevSurface": "cmd+shift+←",
+      "nextSurface": "cmd+shift+→",
       // extra: Shift-Up/Down for workspace switching (no tmux equivalent)
-      "prevSidebarTab": "shift+↑",
-      "nextSidebarTab": "shift+↓"
+      "prevSidebarTab": "cmd+shift+↑",
+      "nextSidebarTab": "cmd+shift+↓"
     }
   },
 }
