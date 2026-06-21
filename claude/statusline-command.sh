@@ -148,16 +148,29 @@ case "$used_tokens" in ''|*[!0-9]*) used_tokens=0 ;; esac
 [ "$worktree" = none ] && worktree=""
 
 # ── Git context ──────────────────────────────────────────────────────────────
-git_root=$(git -C "$cwd" --no-optional-locks rev-parse --show-toplevel 2>/dev/null)
+# One rev-parse yields the current toplevel (for the relative subpath below) plus
+# the common git-dir. Inside a linked worktree the common-dir is the *main* repo's
+# .git and comes back absolute, so its parent gives the repo name — letting line 2
+# anchor to the repo, not the worktree's own directory.
+git_root="" git_common=""
+{ read -r git_root; read -r git_common; } < <(
+    git -C "$cwd" --no-optional-locks rev-parse --show-toplevel --git-common-dir 2>/dev/null)
 git_branch=""
 [ -n "$git_root" ] && git_branch=$(git -C "$cwd" --no-optional-locks branch --show-current 2>/dev/null)
 
 # Line-2 path: repo-anchored inside a git tree, else full path with ~ for $HOME.
-#   /Users/kady/dotfiles/claude  (repo /Users/kady/dotfiles)  -> dotfiles/claude
-#   /Users/kady/dotfiles                                       -> dotfiles
-#   /Users/kady/Downloads/x      (no repo)                     -> ~/Downloads/x
+#   /Users/kady/dotfiles/claude     (repo /Users/kady/dotfiles)  -> dotfiles/claude
+#   /Users/kady/dotfiles                                          -> dotfiles
+#   /Users/kady/dotfiles-wt/claude  (worktree of dotfiles)       -> dotfiles/claude
+#   /Users/kady/Downloads/x         (no repo)                    -> ~/Downloads/x
 if [ -n "$git_root" ]; then
-    repo_name=${git_root##*/}
+    # Repo name = parent of the common .git when it resolved absolutely (worktree
+    # case); else the toplevel basename (main tree — common-dir comes back relative
+    # there, and git_root is already the repo root).
+    case "$git_common" in
+        /*) repo_name=${git_common%/*}; repo_name=${repo_name##*/} ;;
+        *)  repo_name=${git_root##*/} ;;
+    esac
     rel=${cwd#"$git_root"}; rel=${rel#/}
     [ -n "$rel" ] && cwd_display="${repo_name}/${rel}" || cwd_display="$repo_name"
 else
