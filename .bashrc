@@ -133,7 +133,6 @@ export DOTFILES="$HOME/dotfiles"
 [[ -s "$DOTFILES/completions/gh-completion.sh" ]] && source "$DOTFILES/completions/gh-completion.sh"
 [[ -s "$DOTFILES/completions/kubectl.sh" ]] && source "$DOTFILES/completions/kubectl.sh"
 [[ -s ~/.git-completion.bash ]] && source ~/.git-completion.bash
-[[ -s "$DOTFILES/cmux/auto-rename.sh" ]] && source "$DOTFILES/cmux/auto-rename.sh"
 
 if [ ! -z "$(ls -A "$DOTFILES/.no-check")" ]; then
    for file in $DOTFILES/.no-check/*; do

@@ -42,7 +42,7 @@
   //     "unreadPaneRing" : true,
   //     "command" : "",
   //     "hooks" : [
-  // 
+  //
   //     ],
   //     "hooksMode" : "append",
   //     "paneFlash" : true,
@@ -123,10 +123,10 @@
   //     "theme" : "system",
   //     "openTerminalLinksInCmuxBrowser" : true,
   //     "hostsToOpenInEmbeddedBrowser" : [
-  // 
+  //
   //     ],
   //     "urlsToAlwaysOpenExternally" : [
-  // 
+  //
   //     ],
   //     "showImportHintOnBlankTabs" : true,
   //     "defaultSearchEngine" : "google",
@@ -240,5 +240,5 @@
       "prevSidebarTab": "cmd+shift+↑",
       "nextSidebarTab": "cmd+shift+↓"
     }
-  },
+  }
 }
