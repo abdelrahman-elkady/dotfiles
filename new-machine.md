@@ -39,10 +39,39 @@ Steps for migrating to a new Mac. Automated parts live in `install.sh` and
 
 - [ ] `gh auth login`
 
+### ⚠️ Set bash as the default shell — ESSENTIAL
+
+> [!WARNING]
+> **🚨 DO NOT SKIP THIS STEP.**
+> Everything in this repo — `.bash_profile`, `.bashrc`, aliases, completions,
+> the prompt — assumes **bash** is the login shell. New Macs default to zsh,
+> so until this is done **none of the dotfiles will load**.
+
+```bash
+# brew's bash was installed by the Brewfile step above
+echo /opt/homebrew/bin/bash | sudo tee -a /etc/shells
+chsh -s /opt/homebrew/bin/bash
+```
+
+Open a new terminal and verify with `echo $SHELL`.
+
 ### Dotfiles
 
 - [ ] Run `./install.sh` (after the Brewfile — it needs uv and brew)
 - [ ] Run `./system/macos-defaults.sh` (log out/in afterwards for keyboard settings)
+
+### System settings that can't be scripted
+
+- [ ] Set the computer name:
+
+  ```bash
+  sudo scutil --set ComputerName "NAME_GOES_HERE"
+  sudo scutil --set LocalHostName "NAME_GOES_HERE"
+  sudo scutil --set HostName "NAME_GOES_HERE"
+  ```
+
+- [ ] Safari → Settings → General → uncheck **Open "safe" files after downloading**
+- [ ] System Settings → Privacy & Security → Advanced → enable **Require an administrator password to access system-wide settings**
 
 ### Apps not covered by Homebrew
 
