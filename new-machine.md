@@ -70,6 +70,7 @@ Open a new terminal and verify with `echo $SHELL`.
   sudo scutil --set HostName "NAME_GOES_HERE"
   ```
 
+- [ ] Swap modifier keys — System Settings → Keyboard → Keyboard Shortcuts… → Modifier Keys → **fn ↔ Control** (the stored mapping is keyed to each keyboard's hardware ID, so it can't be replayed on a new machine; repeat for external keyboards)
 - [ ] Safari → Settings → General → uncheck **Open "safe" files after downloading**
 - [ ] System Settings → Privacy & Security → Advanced → enable **Require an administrator password to access system-wide settings**
 
