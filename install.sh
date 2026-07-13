@@ -57,6 +57,12 @@ ln -sfv "$DOTFILES_DIR/opencode/tui.json" "$HOME/.config/opencode/tui.json"
 mkdir -p "$HOME/.claude"
 ln -sfv "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
 ln -sfv "$DOTFILES_DIR/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
+ln -sfv "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+
+# gh CLI config (aliases, git protocol, etc.)
+# hosts.yml (auth token) stays local — run `gh auth login` on a new machine.
+mkdir -p "$HOME/.config/gh"
+ln -sfv "$DOTFILES_DIR/gh/config.yml" "$HOME/.config/gh/config.yml"
 
 # VS Code symlinks
 # Using settings sync now 🙈
@@ -78,6 +84,12 @@ if [ "$(uname)" == "Darwin" ]; then
   # selection: 0 = save on quit, 1 = never, 2 = save automatically
   defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile -bool true
   defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile_selection -int 2
+
+  # Rectangle - import window-snapping prefs (unlike iTerm2, this is a one-way
+  # import; changes made in Rectangle are NOT saved back to the repo).
+  # Re-export after changing settings:
+  #   defaults export com.knollsoft.Rectangle "$DOTFILES_DIR/rectangle/com.knollsoft.Rectangle.plist" && plutil -convert xml1 "$DOTFILES_DIR/rectangle/com.knollsoft.Rectangle.plist"
+  defaults import com.knollsoft.Rectangle "$DOTFILES_DIR/rectangle/com.knollsoft.Rectangle.plist"
 
   # install bash completion
   brew install bash-completion

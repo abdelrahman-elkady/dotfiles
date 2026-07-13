@@ -5,9 +5,6 @@ export NODE_ENV='development'
 # Android !
 export ANDROID_HOME=$HOME/Android/Sdk
 
-# GoLang
-export GOPATH=$HOME/project-workspace/go-workspace
-
 # C/C++ env variables
 export LD_LIBRARY_PATH=/usr/lib
 
@@ -18,3 +15,5 @@ export EDITOR=vim
 
 export GEMINI_TELEMETRY_ENABLED=false
 export GEMINI_TELEMETRY_LOG_PROMPTS=false
+
+export HOMEBREW_BUNDLE_DUMP_NO_VSCODE=1

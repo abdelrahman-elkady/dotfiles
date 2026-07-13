@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SUEnableAutomaticChecks</key>
+	<false/>
+	<key>SUHasLaunchedBefore</key>
+	<true/>
+	<key>allowAnyShortcut</key>
+	<true/>
+	<key>alternateDefaultShortcuts</key>
+	<true/>
+	<key>bottomHalf</key>
+	<dict/>
+	<key>hapticFeedbackOnSnap</key>
+	<integer>2</integer>
+	<key>hideMenubarIcon</key>
+	<true/>
+	<key>internalTilingNotified</key>
+	<true/>
+	<key>landscapeSnapAreas</key>
+	<string>[2,{"action":2},5,{"compound":-3},4,{"compound":-2},1,{"action":15},8,{"action":14},6,{"action":13},3,{"action":16},7,{"compound":-4}]</string>
+	<key>lastVersion</key>
+	<string>102</string>
+	<key>launchOnLogin</key>
+	<true/>
+	<key>maximize</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>126</integer>
+		<key>modifierFlags</key>
+		<integer>786432</integer>
+	</dict>
+	<key>nextDisplay</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>45</integer>
+		<key>modifierFlags</key>
+		<integer>1310720</integer>
+	</dict>
+	<key>reflowTodo</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>45</integer>
+		<key>modifierFlags</key>
+		<integer>786432</integer>
+	</dict>
+	<key>subsequentExecutionMode</key>
+	<integer>1</integer>
+	<key>toggleTodo</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>11</integer>
+		<key>modifierFlags</key>
+		<integer>786432</integer>
+	</dict>
+	<key>topHalf</key>
+	<dict/>
+	<key>windowSnapping</key>
+	<integer>2</integer>
+</dict>
+</plist>
