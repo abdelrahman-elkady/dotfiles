@@ -26,6 +26,10 @@ defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
+# Pressing fn does nothing (pairs with the manual fn <-> Ctrl swap; default opens
+# the emoji/input picker, which is maddening on a remapped key)
+defaults write com.apple.HIToolbox AppleFnUsageType -int 0
+
 ###############################################################################
 # Trackpad                                                                    #
 ###############################################################################
@@ -45,6 +49,9 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeF
 # Disable two-finger swipe from right edge (Notification Centre)
 defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 0
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 0
+
+# Tracking speed (default 0.6875 feels slow)
+defaults write NSGlobalDomain com.apple.trackpad.scaling -float 1
 
 ###############################################################################
 # Finder                                                                      #
@@ -70,6 +77,9 @@ defaults write com.apple.finder FXArrangeGroupViewBy -string "Name"
 # Show ~/Library
 chflags nohidden ~/Library
 
+# Remove items from Trash after 30 days
+defaults write com.apple.finder FXRemoveOldTrashItems -bool true
+
 ###############################################################################
 # Dock                                                                        #
 ###############################################################################
@@ -82,6 +92,49 @@ defaults write com.apple.dock show-recents -bool false
 
 # Minimize windows into their application's icon
 defaults write com.apple.dock minimize-to-application -bool true
+
+###############################################################################
+# Appearance & windows                                                        #
+###############################################################################
+
+# Always show scroll bars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
+# Clicking the wallpaper reveals the desktop only in Stage Manager
+# (disables Sonoma's default hide-all-windows-on-desktop-click)
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
+###############################################################################
+# Menu bar                                                                    #
+###############################################################################
+
+# Clock: show seconds, day of week, and date
+defaults write com.apple.menuextra.clock ShowSeconds -bool true
+defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
+defaults write com.apple.menuextra.clock ShowDate -int 1
+
+# Always show the Sound icon in the menu bar
+# (if this doesn't stick on a newer macOS: System Settings → Control Centre →
+# Sound → "Always Show in Menu Bar")
+defaults write com.apple.controlcenter "NSStatusItem Visible Sound" -bool true
+
+###############################################################################
+# Sound                                                                       #
+###############################################################################
+
+# No interface sound effects, but do beep when changing volume
+defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0
+defaults write NSGlobalDomain com.apple.sound.beep.feedback -int 1
+
+###############################################################################
+# Screenshots                                                                 #
+###############################################################################
+
+# Open screenshots in Preview instead of saving to Desktop
+defaults write com.apple.screencapture target -string "preview"
+
+# Show mouse clicks in screen recordings
+defaults write com.apple.screencapture showsClicks -bool true
 
 ###############################################################################
 # Preview                                                                     #
@@ -116,7 +169,7 @@ defaults write com.googlecode.iterm2 NSUserKeyEquivalents -dict \
 # Apply                                                                       #
 ###############################################################################
 
-killall Dock Finder SystemUIServer 2>/dev/null || true
+killall Dock Finder SystemUIServer ControlCenter 2>/dev/null || true
 
 echo "Done."
 echo "  - Log out and back in for keyboard/trackpad settings to fully apply."
