@@ -73,6 +73,13 @@ Open a new terminal and verify with `echo $SHELL`.
 - [ ] Swap modifier keys — System Settings → Keyboard → Keyboard Shortcuts… → Modifier Keys → **fn ↔ Control** (the stored mapping is keyed to each keyboard's hardware ID, so it can't be replayed on a new machine; repeat for external keyboards)
 - [ ] Safari → Settings → General → uncheck **Open "safe" files after downloading**
 - [ ] System Settings → Privacy & Security → Advanced → enable **Require an administrator password to access system-wide settings**
+- [ ] Power settings — worth re-deciding per machine; previous machine's values:
+
+  ```bash
+  sudo pmset -b displaysleep 5   # battery: display off after 5 min
+  sudo pmset -c displaysleep 10  # AC: display off after 10 min
+  sudo pmset -c sleep 0          # AC: never system-sleep while display is off
+  ```
 
 ### Apps not covered by Homebrew
 
