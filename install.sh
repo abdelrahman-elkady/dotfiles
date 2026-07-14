@@ -79,6 +79,13 @@ if [ "$(uname)" == "Darwin" ]; then
 
   # iTerm2 - load settings from the repo's iterm2/ folder and save changes back automatically
   # (the plist in iterm2/ is auto-saved by iTerm2 and will often be dirty; commit = checkpoint)
+  # iTerm2 flushes its in-memory settings over these keys when it quits, so if
+  # it's running now (e.g. this script was run from inside iTerm2) the writes
+  # below get clobbered and the theme never loads.
+  if pgrep -xq iTerm2; then
+    echo "⚠️  iTerm2 is running — it will overwrite the prefs set below when it quits."
+    echo "   Quit iTerm2 and re-run ./install.sh from Terminal.app."
+  fi
   defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$DOTFILES_DIR/iterm2"
   defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
   # selection: 0 = save on quit, 1 = never, 2 = save automatically

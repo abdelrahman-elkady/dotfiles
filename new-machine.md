@@ -57,7 +57,7 @@ Open a new terminal and verify with `echo $SHELL`.
 
 ### Dotfiles
 
-- [ ] Run `./install.sh` (after the Brewfile — it needs uv and brew)
+- [ ] Run `./install.sh` (after the Brewfile — it needs uv and brew). Run it from **Terminal.app, not iTerm2** — iTerm2 overwrites its own prefs on quit, undoing the theme/settings sync the script configures. If iTerm2 was ever opened before this step, it may also have auto-saved its factory settings **over `iterm2/com.googlecode.iterm2.plist` in the repo** — check with `git status` and `git restore` the plist (while iTerm2 is quit) before launching it again
 - [ ] Run `./system/macos-defaults.sh` (log out/in afterwards for keyboard settings)
 
 ### System settings that can't be scripted
