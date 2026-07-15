@@ -166,6 +166,37 @@ defaults write com.googlecode.iterm2 NSUserKeyEquivalents -dict \
   "Close" '@d'
 
 ###############################################################################
+# cmux — app appearance                                                       #
+###############################################################################
+# The terminal theme + keybindings come from the symlinked cmux/config.ghostty
+# and cmux/cmux.json, but the app chrome (sidebar theme, appearance, layout)
+# lives in the com.cmuxterm.app defaults domain — captured here.
+
+if pgrep -xq cmux; then
+  echo "⚠️  cmux is running — quit it first, or it may overwrite the cmux settings below on exit."
+fi
+
+defaults write com.cmuxterm.app appearanceMode -string "dark"
+defaults write com.cmuxterm.app appIconMode -string "dark"
+
+# Sidebar theme
+defaults write com.cmuxterm.app sidebarPreset -string "nativeSidebar"
+defaults write com.cmuxterm.app sidebarMaterial -string "sidebar"
+defaults write com.cmuxterm.app sidebarBlendMode -string "withinWindow"
+defaults write com.cmuxterm.app sidebarBlurOpacity -float 1
+defaults write com.cmuxterm.app sidebarCornerRadius -int 0
+defaults write com.cmuxterm.app sidebarTintHex -string "#000000"
+defaults write com.cmuxterm.app sidebarTintOpacity -float 0.18
+defaults write com.cmuxterm.app sidebarState -string "followWindow"
+# marks the sidebar values above as already-migrated so cmux doesn't reset them
+defaults write com.cmuxterm.app sidebarAppearanceDefaultsVersion -int 1
+
+# Layout
+defaults write com.cmuxterm.app workspacePresentationMode -string "minimal"
+defaults write com.cmuxterm.app "rightSidebar.mode" -string "files"
+defaults write com.cmuxterm.app "fileExplorer.width" -int 276
+
+###############################################################################
 # Apply                                                                       #
 ###############################################################################
 
@@ -174,3 +205,4 @@ killall Dock Finder SystemUIServer ControlCenter 2>/dev/null || true
 echo "Done."
 echo "  - Log out and back in for keyboard/trackpad settings to fully apply."
 echo "  - Relaunch Chrome/iTerm2/etc. to pick up the shortcut remaps."
+echo "  - Relaunch cmux to pick up its appearance settings."
