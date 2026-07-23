@@ -71,8 +71,6 @@ cask "codex"
 cask "cursor"
 
 cask "font-powerline-symbols"
-# Free and open-source image editor
-cask "gimp"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Open-source cross-platform alternative to AirDrop
@@ -101,5 +99,3 @@ cask "zoom"
 uv "graphifyy"
 uv "powerline-status"
 uv "watchdog"
-npm "@playwright/cli"
-npm "corepack"
