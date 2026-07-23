@@ -1,6 +1,5 @@
 # setting 256-color
 export TERM=xterm-256color
-export NODE_ENV='development'
 
 # Android !
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -17,3 +16,4 @@ export GEMINI_TELEMETRY_ENABLED=false
 export GEMINI_TELEMETRY_LOG_PROMPTS=false
 
 export HOMEBREW_BUNDLE_DUMP_NO_VSCODE=1
+export LANG=en_US.UTF-8
