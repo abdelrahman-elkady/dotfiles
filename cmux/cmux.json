@@ -8,11 +8,11 @@
   // cmux creates this template on launch when ~/.config/cmux/cmux.json is missing.
   // Legacy settings.json files are read only as fallback for keys not present here.
 
-  //   "app" : {
+    "app" : {
   //     "focusPaneOnFirstClick" : false,
   //     "openSupportedFilesInCmux" : true,
   //     "openMarkdownInCmuxViewer" : false,
-  //     "reorderOnNotification" : true,
+      "reorderOnNotification" : false,
   //     "menuBarOnly" : false,
   //     "warnBeforeQuit" : true,
   //     "renameSelectsExistingName" : true,
@@ -28,7 +28,7 @@
   //     "newWorkspacePlacement" : "afterCurrent",
   //     "keepWorkspaceOpenWhenClosingLastSurface" : false,
   //     "language" : "system"
-  //   },
+    },
 
   //   "terminal" : {
   //     "showScrollBar" : true,
