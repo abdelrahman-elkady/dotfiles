@@ -52,15 +52,8 @@ ln -sfv "$DOTFILES_DIR/opencode/tui.json" "$HOME/.config/opencode/tui.json"
 mkdir -p "$HOME/.pi/agent"
 ln -sfv "$DOTFILES_DIR/pi/agent/settings.json" "$HOME/.pi/agent/settings.json"
 
-PI_EXTENSIONS_DIR="$HOME/.pi/agent/extensions"
-if [ -L "$PI_EXTENSIONS_DIR" ]; then
-  rm "$PI_EXTENSIONS_DIR"
-elif [ -e "$PI_EXTENSIONS_DIR" ]; then
-  PI_EXTENSIONS_BACKUP="$PI_EXTENSIONS_DIR.backup.$(date +%Y%m%d%H%M%S)"
-  echo "Backing up existing Pi extensions to $PI_EXTENSIONS_BACKUP"
-  mv "$PI_EXTENSIONS_DIR" "$PI_EXTENSIONS_BACKUP"
-fi
-ln -sv "$DOTFILES_DIR/pi/agent/extensions" "$PI_EXTENSIONS_DIR"
+rm -rf "$HOME/.pi/agent/extensions"
+ln -sv "$DOTFILES_DIR/pi/agent/extensions" "$HOME/.pi/agent/extensions"
 
 if command -v pi >/dev/null 2>&1; then
   echo "Installing Pi extension packages..."
