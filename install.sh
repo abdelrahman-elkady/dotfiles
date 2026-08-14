@@ -47,6 +47,18 @@ mkdir -p "$HOME/.config/opencode/themes"
 ln -sfv "$DOTFILES_DIR/opencode/themes/breeze.json" "$HOME/.config/opencode/themes/breeze.json"
 ln -sfv "$DOTFILES_DIR/opencode/tui.json" "$HOME/.config/opencode/tui.json"
 
+# Pi global config and custom extensions (credentials and runtime state stay local)
+# Package versions are pinned in settings.json; Pi installs them into its local cache.
+mkdir -p "$HOME/.pi/agent/extensions"
+ln -sfv "$DOTFILES_DIR/pi/agent/settings.json" "$HOME/.pi/agent/settings.json"
+ln -sfv "$DOTFILES_DIR/pi/agent/extensions/codex-usage.ts" "$HOME/.pi/agent/extensions/codex-usage.ts"
+if command -v pi >/dev/null 2>&1; then
+  echo "Installing Pi extension packages..."
+  pi update --extensions
+else
+  echo "Warning: pi not found; skipping Pi extension package installation."
+fi
+
 # Claude Code global config (portable across machines)
 # settings.json holds shared, non-secret config (plugins, effort, statusline, etc.);
 # statusline-command.sh is the script settings.json points at to render the status line.
