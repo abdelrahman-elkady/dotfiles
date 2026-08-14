@@ -52,6 +52,7 @@ ln -sfv "$DOTFILES_DIR/opencode/tui.json" "$HOME/.config/opencode/tui.json"
 mkdir -p "$HOME/.pi/agent/extensions"
 ln -sfv "$DOTFILES_DIR/pi/agent/settings.json" "$HOME/.pi/agent/settings.json"
 ln -sfv "$DOTFILES_DIR/pi/agent/extensions/codex-usage.ts" "$HOME/.pi/agent/extensions/codex-usage.ts"
+ln -sfv "$DOTFILES_DIR/pi/agent/extensions/session-name.ts" "$HOME/.pi/agent/extensions/session-name.ts"
 if command -v pi >/dev/null 2>&1; then
   echo "Installing Pi extension packages..."
   pi update --extensions
