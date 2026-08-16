@@ -2,7 +2,7 @@
   "lastChangelogVersion": "0.84.2",
   "theme": "dark",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-terra",
+  "defaultModel": "gpt-5.6-sol",
   "defaultThinkingLevel": "xhigh",
   "tuiMode": "regular",
   "transport": "auto",
@@ -18,6 +18,7 @@
     "npm:@juicesharp/rpiv-btw@2.5.1",
     "npm:@tintinweb/pi-subagents@0.15.2",
     "npm:pi-simplify@0.2.3",
-    "npm:pi-web-access@0.22.0"
+    "npm:pi-web-access@0.22.0",
+    "npm:pi-mcp-adapter"
   ]
 }
