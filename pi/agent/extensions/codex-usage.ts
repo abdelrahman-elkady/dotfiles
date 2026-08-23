@@ -206,6 +206,15 @@ export default function (pi: ExtensionAPI) {
 						theme.fg("success", `↓${formatTokens(totals.output)}`) +
 						" " +
 						theme.fg("muted", `Σ${formatTokens(tokenTotal)}`);
+					const statuses = footerData.getExtensionStatuses();
+					const fast = statuses.get("codex-fast");
+					const extensionStatuses = [...statuses.entries()]
+						.filter(([id]) => id !== "codex-fast")
+						.map(([, status]) => status);
+					const modelField =
+						theme.fg("accent", model) +
+						(fast ? ` ${theme.fg("warning", fast)}` : "") +
+						theme.fg("accent", ` · ${ctx.thinkingLevel}`);
 					const worktreeField = worktreeName ? theme.fg("accent", `⑂ ${worktreeName}`) : undefined;
 					const gitField = branch
 						? theme.fg(gitDirty ? "warning" : "dim", `git:${branch}${gitDirty ? "*" : ""}`) +
@@ -213,8 +222,9 @@ export default function (pi: ExtensionAPI) {
 						: worktreeField;
 					const fields = [
 						codex,
+						...extensionStatuses,
 						theme.fg(contextColor, contextText),
-						theme.fg("accent", `${model} · ${ctx.thinkingLevel}`),
+						modelField,
 						gitField,
 					].filter((field): field is string => field !== undefined);
 					const separator = theme.fg("dim", " | ");
