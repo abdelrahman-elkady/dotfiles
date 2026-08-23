@@ -3,7 +3,7 @@ import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-a
 import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 import { readFile } from "node:fs/promises";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { basename, join, resolve } from "node:path";
 
 const REFRESH_INTERVAL_MS = 60_000;
 const REQUEST_TIMEOUT_MS = 10_000;
@@ -107,6 +107,7 @@ export default function (pi: ExtensionAPI) {
 	let codexUsage: UsageSummary | undefined;
 	let codexUnavailable = false;
 	let gitDirty = false;
+	let worktreeName: string | undefined;
 	let requestFooterRender: (() => void) | undefined;
 
 	async function refresh(ctx: ExtensionContext, notify = false): Promise<void> {
@@ -128,12 +129,23 @@ export default function (pi: ExtensionAPI) {
 		}
 	}
 
-	async function refreshGitStatus(): Promise<void> {
+	async function refreshGitStatus(cwd: string): Promise<void> {
 		try {
-			const result = await pi.exec("git", ["status", "--porcelain"], { timeout: 5_000 });
-			gitDirty = result.code === 0 && result.stdout.trim().length > 0;
+			const [status, paths] = await Promise.all([
+				pi.exec("git", ["status", "--porcelain"], { cwd, timeout: 5_000 }),
+				pi.exec("git", ["rev-parse", "--git-dir", "--git-common-dir"], { cwd, timeout: 5_000 }),
+			]);
+			gitDirty = status.code === 0 && status.stdout.trim().length > 0;
+			worktreeName = undefined;
+			if (paths.code === 0) {
+				const [gitDir, commonGitDir] = paths.stdout.trim().split(/\r?\n/);
+				if (gitDir && commonGitDir && resolve(cwd, gitDir) !== resolve(cwd, commonGitDir)) {
+					worktreeName = basename(resolve(cwd, gitDir));
+				}
+			}
 		} catch {
 			gitDirty = false;
+			worktreeName = undefined;
 		} finally {
 			if (!stopped) requestFooterRender?.();
 		}
@@ -145,7 +157,7 @@ export default function (pi: ExtensionAPI) {
 
 		ctx.ui.setFooter((tui, theme, footerData) => {
 			const unsubscribe = footerData.onBranchChange(() => {
-				void refreshGitStatus();
+				void refreshGitStatus(ctx.cwd);
 				tui.requestRender();
 			});
 			requestFooterRender = () => tui.requestRender();
@@ -194,13 +206,16 @@ export default function (pi: ExtensionAPI) {
 						theme.fg("success", `↓${formatTokens(totals.output)}`) +
 						" " +
 						theme.fg("muted", `Σ${formatTokens(tokenTotal)}`);
+					const worktreeField = worktreeName ? theme.fg("accent", `⑂ ${worktreeName}`) : undefined;
+					const gitField = branch
+						? theme.fg(gitDirty ? "warning" : "dim", `git:${branch}${gitDirty ? "*" : ""}`) +
+							(worktreeField ? ` ${worktreeField}` : "")
+						: worktreeField;
 					const fields = [
 						codex,
 						theme.fg(contextColor, contextText),
 						theme.fg("accent", `${model} · ${ctx.thinkingLevel}`),
-						branch
-							? theme.fg(gitDirty ? "warning" : "dim", `git:${branch}${gitDirty ? "*" : ""}`)
-							: undefined,
+						gitField,
 					].filter((field): field is string => field !== undefined);
 					const separator = theme.fg("dim", " | ");
 					let left = "";
@@ -216,13 +231,13 @@ export default function (pi: ExtensionAPI) {
 		});
 
 		void refresh(ctx);
-		void refreshGitStatus();
+		void refreshGitStatus(ctx.cwd);
 		refreshTimer = setInterval(() => void refresh(ctx), REFRESH_INTERVAL_MS);
 		refreshTimer.unref?.();
 	});
 
-	pi.on("agent_settled", () => {
-		void refreshGitStatus();
+	pi.on("agent_settled", (_event, ctx) => {
+		void refreshGitStatus(ctx.cwd);
 		requestFooterRender?.();
 	});
 
