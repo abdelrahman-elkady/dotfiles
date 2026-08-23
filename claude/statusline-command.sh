@@ -193,6 +193,38 @@ fmt_tokens "$used_tokens"; used_fmt=$REPLY
 fmt_tokens "$window";      win_fmt=$REPLY
 bar_segment="${C_GREY}Context: ${C_RESET}${bar} ${C_DIM}${used_fmt}/${win_fmt} ${C_RESET}${grade}(${pct_int}%)${C_RESET}"
 
+# ── Auto-compact threshold ───────────────────────────────────────────────────
+# The auto-compact window — the token budget Claude Code allows before it
+# compacts — is NOT in the statusline payload, so we read it ourselves. Precedence
+# mirrors Claude Code: the session env override wins, else settings.json in
+# user → project → local order (last non-empty wins, so local beats user). Left
+# blank when unset (model-default window), which simply omits the segment.
+autocompact=""
+if [ -n "${CLAUDE_CODE_AUTO_COMPACT_WINDOW:-}" ]; then
+    autocompact=$CLAUDE_CODE_AUTO_COMPACT_WINDOW
+else
+    for f in "$HOME/.claude/settings.json" \
+             "$git_root/.claude/settings.json" \
+             "$git_root/.claude/settings.local.json"; do
+        [ -f "$f" ] || continue
+        v=$(jq -r '.autoCompactWindow // empty' "$f" 2>/dev/null)
+        [ -n "$v" ] && autocompact=$v
+    done
+fi
+case "$autocompact" in ''|*[!0-9]*) autocompact="" ;; esac
+
+# Segment reads "Compact: 300k (255k left)": the threshold, then tokens remaining
+# before it fires, graded green→red by how much of the window is already spent.
+compact_segment=""
+if [ -n "$autocompact" ] && [ "$autocompact" -gt 0 ] 2>/dev/null; then
+    fmt_tokens "$autocompact"; ac_fmt=$REPLY
+    remain=$(( autocompact - used_tokens )); [ "$remain" -lt 0 ] && remain=0
+    fmt_tokens "$remain"; remain_fmt=$REPLY
+    ac_pct=$(( used_tokens * 100 / autocompact ))
+    grade_color "$ac_pct" 60 80 95; ac_color=$REPLY
+    compact_segment="${C_GREY}Compact: ${C_RESET}${C_DIM}${ac_fmt} ${C_RESET}${ac_color}(${remain_fmt} left)${C_RESET}"
+fi
+
 # ── 5-hour rate-limit segment (right-aligned on line 1) ───────────────────────
 # Reuses render_bar: fill+colour track the quota %, graded at 50/75/90. Reads
 # "Limit: [██▒▒…] 47% · 2h 13m left"; the "Xh Ym left" tail is dropped once
@@ -222,6 +254,7 @@ if [ -n "$effort" ]; then
     effort_color "$effort"; left1="${left1} ${REPLY}${effort}${C_RESET}"
 fi
 left1="${left1}${sep}${bar_segment}"
+[ -n "$compact_segment" ] && left1="${left1}${sep}${compact_segment}"
 
 right1="$five_hour_rendered"
 

@@ -25,6 +25,7 @@
     }
   },
   "effortLevel": "xhigh",
+  "autoCompactWindow": 400000,
   "voice": {
     "enabled": true,
     "mode": "hold"
