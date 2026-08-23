@@ -9,3 +9,6 @@
 .no-check
 
 .DS_Store
+
+# cmux extension runtime lock
+pi/agent/extensions/.cmux-session.lock
