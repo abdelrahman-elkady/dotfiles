@@ -5,6 +5,7 @@
   "permissions": {
     "defaultMode": "auto"
   },
+  "model": "fable",
   "statusLine": {
     "type": "command",
     "command": "bash $HOME/.claude/statusline-command.sh"
@@ -12,7 +13,7 @@
   "enabledPlugins": {
     "skill-creator@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
+    "code-review@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
     "github@claude-plugins-official": true
   },
@@ -26,11 +27,13 @@
   },
   "effortLevel": "xhigh",
   "autoCompactWindow": 400000,
+  "advisorModel": "fable",
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
   "skipWorkflowUsageWarning": true,
+  "theme": "dark",
   "verbose": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
