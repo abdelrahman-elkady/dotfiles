@@ -12,3 +12,7 @@ fi
 if [ -f /home/linuxbrew/.linuxbrew/etc/bash_completion.d/hub.bash_completion.sh ]; then
   source /home/linuxbrew/.linuxbrew/etc/bash_completion.d/hub.bash_completion.sh
 fi
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.bash 2>/dev/null || :
