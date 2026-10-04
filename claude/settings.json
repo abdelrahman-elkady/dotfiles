@@ -5,7 +5,7 @@
   "permissions": {
     "defaultMode": "auto"
   },
-  "model": "fable",
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "bash $HOME/.claude/statusline-command.sh"
@@ -13,7 +13,6 @@
   "enabledPlugins": {
     "skill-creator@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
-    "code-review@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
     "github@claude-plugins-official": true
   },
@@ -26,6 +25,14 @@
     }
   },
   "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-fable-5-1": {
+      "effortLevel": "xhigh"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    }
+  },
   "autoCompactWindow": 400000,
   "advisorModel": "fable",
   "voice": {
