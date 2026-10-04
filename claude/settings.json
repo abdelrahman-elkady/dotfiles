@@ -14,13 +14,20 @@
     "skill-creator@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "github@claude-plugins-official": true
+    "github@claude-plugins-official": true,
+    "split@elkady": true
   },
   "extraKnownMarketplaces": {
     "planning-with-files": {
       "source": {
         "source": "github",
         "repo": "OthmanAdi/planning-with-files"
+      }
+    },
+    "elkady": {
+      "source": {
+        "source": "github",
+        "repo": "abdelrahman-elkady/claude-plugins"
       }
     }
   },
