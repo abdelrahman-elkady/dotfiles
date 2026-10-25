@@ -52,6 +52,10 @@ else
   echo "Warning: pi not found; skipping Pi extension package installation."
 fi
 
+# Codex
+mkdir -p "$HOME/.codex"
+ln -sfv "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
+
 # Claude Code
 mkdir -p "$HOME/.claude"
 ln -sfv "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
