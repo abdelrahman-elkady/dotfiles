@@ -8,7 +8,8 @@
 # the window used, coloured by the RAW used-token count (100k/150k/200k thresholds).
 # The right-aligned 5-hour Limit bar's fill+colour track the quota % (50/75/90),
 # followed by the exact % and the time until reset; the "Xh Ym left" tail drops
-# once the window has reset.
+# once the window has reset. With no 5-hour window in the payload (5-hour limit
+# waived) the weekly window takes its place, labelled "Weekly:".
 #
 # This runs on every render, so the helpers below set $REPLY (or use `printf -v`)
 # instead of printing — call sites avoid a $()-subshell fork on the hot path.
@@ -42,7 +43,7 @@ sep=" ${C_GREY}│${C_RESET} "  # inter-segment divider on line 1
 # ── Helpers (set $REPLY; no subshell forks) ──────────────────────────────────
 # Map an ascending integer onto the green→yellow→orange→red ladder. Thresholds
 # are passed low→high; the 2>/dev/null lets a non-integer value fall through to
-# green. Used by both the context bar (raw tokens) and the 5-hour limit (%).
+# green. Used by both the context bar (raw tokens) and the rate limit (%).
 grade_color() {  # value  t_yellow  t_orange  t_red
     if   [ "$1" -ge "$4" ] 2>/dev/null; then REPLY=$GRADE_RED
     elif [ "$1" -ge "$3" ] 2>/dev/null; then REPLY=$GRADE_ORANGE
@@ -80,7 +81,7 @@ fmt_tokens() {
 
 # Render a BAR_WIDTH-cell gauge "[████▒▒▒▒]" — `filled` graded cells coloured by
 # $2, the rest dim, brackets grey. Sets $REPLY. Fork-free (printf -v + glyph
-# swap). Shared by the context and 5-hour limit segments so both look identical.
+# swap). Shared by the context and rate-limit segments so both look identical.
 render_bar() {  # filled  grade-colour
     local filled=$1 grade=$2 fill empty
     [ "$filled" -lt 0 ] && filled=0
@@ -93,10 +94,13 @@ render_bar() {  # filled  grade-colour
 }
 
 # Format a duration (seconds) compactly: 8580 -> "2h 23m", 2580 -> "43m",
-# 7200 -> "2h". Drops any zero unit. Sets $REPLY.
+# 7200 -> "2h", 533000 -> "6d 4h" (minutes dropped once days show). Drops any
+# zero unit. Sets $REPLY.
 fmt_remaining() {
-    local h=$(( $1 / 3600 )) m=$(( ($1 % 3600) / 60 ))
-    if   [ "$h" -gt 0 ] && [ "$m" -gt 0 ]; then REPLY="${h}h ${m}m"
+    local d=$(( $1 / 86400 )) h=$(( ($1 % 86400) / 3600 )) m=$(( ($1 % 3600) / 60 ))
+    if   [ "$d" -gt 0 ] && [ "$h" -gt 0 ]; then REPLY="${d}d ${h}h"
+    elif [ "$d" -gt 0 ];                   then REPLY="${d}d"
+    elif [ "$h" -gt 0 ] && [ "$m" -gt 0 ]; then REPLY="${h}h ${m}m"
     elif [ "$h" -gt 0 ];                   then REPLY="${h}h"
     else                                        REPLY="${m}m"
     fi
@@ -119,7 +123,7 @@ vlen() {
 # used_tokens prefers context_window.total_input_tokens (current context, input
 # + cache, matches used_percentage); falls back to summing current_usage for
 # older payloads. context_window_size is 1000000 on extended-context models.
-IFS=$'\t' read -r model effort worktree cwd window used_tokens five_pct five_resets < <(
+IFS=$'\t' read -r model effort worktree cwd window used_tokens five_pct five_resets week_pct week_resets < <(
     echo "$input" | jq -r '
         [ (.model.display_name // ""),
           (.effort.level // "none"),
@@ -130,8 +134,10 @@ IFS=$'\t' read -r model effort worktree cwd window used_tokens five_pct five_res
              // ((.context_window.current_usage.input_tokens // 0)
                 + (.context_window.current_usage.cache_read_input_tokens // 0)
                 + (.context_window.current_usage.cache_creation_input_tokens // 0))),
-          (.rate_limits.five_hour.used_percentage // ""),
-          (.rate_limits.five_hour.resets_at // "")
+          (.rate_limits.five_hour.used_percentage // "none"),
+          (.rate_limits.five_hour.resets_at // "none"),
+          (.rate_limits.seven_day.used_percentage // "none"),
+          (.rate_limits.seven_day.resets_at // "none")
         ] | @tsv')
 
 # Sanitise integers used in arithmetic.
@@ -139,13 +145,18 @@ case "$window"      in ''|*[!0-9]*) window=200000 ;; esac
 case "$used_tokens" in ''|*[!0-9]*) used_tokens=0 ;; esac
 [ "$window" -le 0 ] 2>/dev/null && window=200000
 
-# effort and worktree are *middle* TSV columns, so an empty value would be a bare
-# consecutive tab — and since tab is IFS whitespace, `read` would collapse it and
-# shift every later field. jq therefore emits the sentinel "none" for an absent
-# effort (unsupported model) or worktree (main working tree); map them back to
-# empty here so the render simply omits each segment.
-[ "$effort"   = none ] && effort=""
-[ "$worktree" = none ] && worktree=""
+# effort, worktree and the rate-limit fields can be absent mid-row, and an empty
+# value would be a bare consecutive tab — since tab is IFS whitespace, `read`
+# would collapse it and shift every later field. jq therefore emits the sentinel
+# "none" for an absent effort (unsupported model), worktree (main working tree)
+# or rate-limit window; map them back to empty here so the render simply omits
+# each segment.
+[ "$effort"      = none ] && effort=""
+[ "$worktree"    = none ] && worktree=""
+[ "$five_pct"    = none ] && five_pct=""
+[ "$five_resets" = none ] && five_resets=""
+[ "$week_pct"    = none ] && week_pct=""
+[ "$week_resets" = none ] && week_resets=""
 
 # ── Git context ──────────────────────────────────────────────────────────────
 # One rev-parse yields the current toplevel (for the relative subpath below) plus
@@ -225,25 +236,38 @@ if [ -n "$autocompact" ] && [ "$autocompact" -gt 0 ] 2>/dev/null; then
     compact_segment="${C_GREY}Compact: ${C_RESET}${C_DIM}${ac_fmt} ${C_RESET}${ac_color}(${remain_fmt} left)${C_RESET}"
 fi
 
-# ── 5-hour rate-limit segment (right-aligned on line 1) ───────────────────────
+# ── Rate-limit segment (right-aligned on line 1) ─────────────────────────────
+# Shows the 5-hour window ("Limit:"). When the payload has no 5-hour window but
+# does have the weekly one — a plan with the 5-hour limit waived — it shows the
+# weekly window instead ("Weekly:"). Claude Code also drops five_hour once its
+# resets_at passes, so on other plans the weekly bar can appear in that idle gap
+# until the next API response.
+#
 # Reuses render_bar: fill+colour track the quota %, graded at 50/75/90. Reads
-# "Limit: [██▒▒…] 47% · 2h 13m left"; the "Xh Ym left" tail is dropped once
-# the window has reset (no time remaining).
-five_hour_remaining=""
-if [ -n "$five_resets" ]; then
-    rem=$(( five_resets - $(date +%s) ))
-    [ "$rem" -gt 0 ] 2>/dev/null && { fmt_remaining "$rem"; five_hour_remaining=$REPLY; }
+# "Limit: [██▒▒…] 47% · 2h 13m left"; the "… left" tail is dropped once the
+# window has reset (no time remaining).
+limit_label="" limit_pct="" limit_resets=""
+if [ -n "$five_pct" ]; then
+    limit_label="Limit"  limit_pct=$five_pct limit_resets=$five_resets
+elif [ -n "$week_pct" ]; then
+    limit_label="Weekly" limit_pct=$week_pct limit_resets=$week_resets
 fi
 
-five_hour_rendered=""
-if [ -n "$five_pct" ]; then
-    five_int=${five_pct%%.*}
-    grade_color "$five_int" 50 75 90; five_color=$REPLY                       # grade by truncated %
-    render_bar "$(( (five_int * BAR_WIDTH + 50) / 100 ))" "$five_color"       # round % to a cell count
+limit_remaining=""
+if [ -n "$limit_resets" ]; then
+    rem=$(( limit_resets - $(date +%s) ))
+    [ "$rem" -gt 0 ] 2>/dev/null && { fmt_remaining "$rem"; limit_remaining=$REPLY; }
+fi
+
+limit_rendered=""
+if [ -n "$limit_pct" ]; then
+    limit_int=${limit_pct%%.*}
+    grade_color "$limit_int" 50 75 90; limit_color=$REPLY                     # grade by truncated %
+    render_bar "$(( (limit_int * BAR_WIDTH + 50) / 100 ))" "$limit_color"     # round % to a cell count
     limit_bar=$REPLY
-    printf -v five_disp '%.0f' "$five_pct"                                    # display rounded %
-    five_hour_rendered="${C_GREY}Limit: ${C_RESET}${limit_bar} ${five_color}${five_disp}%${C_RESET}"
-    [ -n "$five_hour_remaining" ] && five_hour_rendered+="${C_DIM} · ${five_hour_remaining} left${C_RESET}"
+    printf -v limit_disp '%.0f' "$limit_pct"                                  # display rounded %
+    limit_rendered="${C_GREY}${limit_label}: ${C_RESET}${limit_bar} ${limit_color}${limit_disp}%${C_RESET}"
+    [ -n "$limit_remaining" ] && limit_rendered+="${C_DIM} · ${limit_remaining} left${C_RESET}"
 fi
 
 # ── Assemble line 1: MODEL effort │ bar  ……  limit (right-aligned) ───────────
@@ -256,7 +280,7 @@ fi
 left1="${left1}${sep}${bar_segment}"
 [ -n "$compact_segment" ] && left1="${left1}${sep}${compact_segment}"
 
-right1="$five_hour_rendered"
+right1="$limit_rendered"
 
 # Right-align the limit segment using the terminal width (queried via /dev/tty,
 # since stdout is not a TTY here). Falls back to a single space when unknown.
