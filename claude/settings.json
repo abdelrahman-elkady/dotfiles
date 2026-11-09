@@ -6,6 +6,9 @@
     "defaultMode": "auto"
   },
   "model": "opus",
+  "worktree": {
+    "baseRef": "fresh"
+  },
   "statusLine": {
     "type": "command",
     "command": "bash $HOME/.claude/statusline-command.sh"
@@ -15,7 +18,8 @@
     "plugin-dev@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "github@claude-plugins-official": true,
-    "split@elkady": true
+    "split@elkady": true,
+    "fleet@elkady": true
   },
   "extraKnownMarketplaces": {
     "planning-with-files": {
@@ -38,6 +42,9 @@
     },
     "claude-opus-5-5": {
       "effortLevel": "xhigh"
+    },
+    "claude-sonnet-5-5": {
+      "effortLevel": "high"
     }
   },
   "autoCompactWindow": 400000,
