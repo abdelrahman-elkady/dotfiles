@@ -1,0 +1,62 @@
+# herdr config: the agent multiplexer, run inside Ghostty.app.
+# Lives in ~/dotfiles/herdr/, symlinked to ~/.config/herdr/config.toml by install.sh.
+# Ported from ~/dotfiles/.tmux.conf (prefix + splits) and ~/dotfiles/cmux/cmux.json
+# (Cmd-based direct chords). Full defaults: `herdr --default-config`.
+# Check after editing: herdr config check
+# Reload: ctrl+a r (reload_config below) or `herdr server reload-config`.
+
+# Notification delivery is chosen in [ui.toast] below; skip the first-run prompt
+# (it would otherwise write its choice into this tracked file).
+onboarding = false
+
+[theme]
+# Follow the outer terminal's palette: Ghostty's Breeze colors in
+# ghostty/config.ghostty stay the single source of truth.
+name = "terminal"
+
+[keys]
+# tmux: set-option -g prefix C-a
+prefix = "ctrl+a"
+
+# Splits, tmux muscle memory: v = side by side (herdr default), h = stacked.
+split_vertical = "prefix+v"
+split_horizontal = ["prefix+h", "prefix+minus"]
+
+# Pane focus. Direct: cmux ⌘⌃+arrows (cmux.json focusLeft/Right/Up/Down).
+# Prefix fallback uses arrows because prefix+h is the split above.
+# Cmd chords never reach shells or agents, so they can't clash with pane apps
+# (bare ctrl/shift+arrows are word-motion/selection in readline and TUIs).
+focus_pane_left = ["prefix+left", "cmd+ctrl+left"]
+focus_pane_down = ["prefix+down", "cmd+ctrl+down"]
+focus_pane_up = ["prefix+up", "cmd+ctrl+up"]
+focus_pane_right = ["prefix+right", "cmd+ctrl+right"]
+# tmux: bind-key C-a last-window / cmux focusHistoryBack (ctrl+a ctrl+a).
+# herdr reserves prefix-twice for sending a literal ctrl+a to the pane, and has
+# no "last tab" action, so last pane goes on ctrl+a then a.
+last_pane = "prefix+a"
+
+# Tabs (tmux windows). Direct: cmux ⌘⇧+←/→ (prevSurface/nextSurface).
+previous_tab = ["prefix+p", "cmd+shift+left"]
+next_tab = ["prefix+n", "cmd+shift+right"]
+# tmux: C-S-Left/Right swap-window; Cmd added to stay off pane apps' keys.
+move_tab_previous = "cmd+ctrl+shift+left"
+move_tab_next = "cmd+ctrl+shift+right"
+
+# Workspaces. Direct: cmux ⌘⇧+↑/↓ (prevSidebarTab/nextSidebarTab).
+previous_workspace = "cmd+shift+up"
+next_workspace = "cmd+shift+down"
+
+# tmux: bind r source-file. herdr's resize mode moves to reload's old key.
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+
+[ui]
+# tmux had `set -s set-clipboard off`: don't clobber the system clipboard on
+# every mouse selection; copy explicitly with Cmd+C. Only affects herdr's own
+# selection, not copies made by apps inside panes (Claude Code, opencode).
+copy_on_select = false
+
+[ui.toast]
+# Ghostty raises the macOS notification when an agent finishes or needs input
+# (herdr's default is "off").
+delivery = "terminal"
