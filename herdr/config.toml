@@ -38,6 +38,8 @@ last_pane = "prefix+a"
 # Tabs. Direct: cmux ⌘T (newSurface), ⌘⇧+←/→ (prevSurface/nextSurface).
 # prefix+c makes a workspace instead (see below), as it did in cmux.
 new_tab = "cmd+t"
+# cmux: renameTab = ⌘R
+rename_tab = ["prefix+shift+t", "cmd+r"]
 previous_tab = ["prefix+p", "cmd+shift+left"]
 next_tab = ["prefix+n", "cmd+shift+right"]
 # tmux: C-S-Left/Right swap-window; Cmd added to stay off pane apps' keys.
@@ -46,6 +48,8 @@ move_tab_next = "cmd+ctrl+shift+right"
 
 # Workspaces. cmux: ctrl+a c and ⌘N (newTab = new workspace), ⌘⇧+↑/↓ (prevSidebarTab/nextSidebarTab).
 new_workspace = ["prefix+c", "cmd+n", "prefix+shift+n"]
+# cmux: renameWorkspace = ⌘⇧R
+rename_workspace = ["prefix+shift+w", "cmd+shift+r"]
 previous_workspace = "cmd+shift+up"
 next_workspace = "cmd+shift+down"
 
