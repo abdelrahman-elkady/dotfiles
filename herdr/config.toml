@@ -35,14 +35,16 @@ focus_pane_right = ["prefix+right", "cmd+ctrl+right"]
 # no "last tab" action, so last pane goes on ctrl+a then a.
 last_pane = "prefix+a"
 
-# Tabs (tmux windows). Direct: cmux ⌘⇧+←/→ (prevSurface/nextSurface).
+# Tabs (tmux windows). Direct: cmux ⌘T (newSurface), ⌘⇧+←/→ (prevSurface/nextSurface).
+new_tab = ["prefix+c", "cmd+t"]
 previous_tab = ["prefix+p", "cmd+shift+left"]
 next_tab = ["prefix+n", "cmd+shift+right"]
 # tmux: C-S-Left/Right swap-window; Cmd added to stay off pane apps' keys.
 move_tab_previous = "cmd+ctrl+shift+left"
 move_tab_next = "cmd+ctrl+shift+right"
 
-# Workspaces. Direct: cmux ⌘⇧+↑/↓ (prevSidebarTab/nextSidebarTab).
+# Workspaces. Direct: cmux ⌘N (newTab = new workspace), ⌘⇧+↑/↓ (prevSidebarTab/nextSidebarTab).
+new_workspace = ["prefix+shift+n", "cmd+n"]
 previous_workspace = "cmd+shift+up"
 next_workspace = "cmd+shift+down"
 

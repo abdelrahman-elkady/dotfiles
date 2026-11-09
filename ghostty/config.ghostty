@@ -78,5 +78,11 @@ keybind = cmd+ctrl+arrow_down=unbind
 # cmd+shift+up/down = herdr workspace switch (Ghostty default: jump_to_prompt)
 keybind = cmd+shift+arrow_up=unbind
 keybind = cmd+shift+arrow_down=unbind
+# cmd+t = herdr new tab (Ghostty default: new_tab)
+keybind = cmd+t=unbind
+# cmd+n = herdr new workspace (Ghostty default: new_window), so a new Ghostty
+# window moves to cmd+shift+n, same as cmux's newWindow.
+keybind = cmd+n=unbind
+keybind = cmd+shift+n=new_window
 # cmd+shift+left/right (herdr tabs) and cmd+ctrl+shift+left/right (herdr move tab)
 # have no Ghostty default, so they need no unbind.
