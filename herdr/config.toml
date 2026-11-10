@@ -14,9 +14,22 @@ onboarding = false
 # ghostty/config.ghostty stay the single source of truth.
 name = "terminal"
 
+[theme.custom]
+# The terminal theme leaves panel_bg unset, so the focused tab draws its label in
+# surface_dim (ANSI 8, #7f8c8d) on accent (ANSI 4, #1d99f3): ~1.1:1, unreadable.
+# An explicit panel_bg (Ghostty's background, so panes look unchanged) becomes
+# the focused-tab label color instead: dark on light blue, ~4.9:1.
+panel_bg = "#31363b"
+accent = "#3daee9"          # Breeze palette 12, lighter than ANSI blue
+sidebar_bg = "#232629"      # Breeze's darker shade, sets the sidebar apart from panes
+active_row_bg = "#1e4a6b"   # focused workspace/agent row; default ANSI 8 was ~3:1 under white text
+
 [keys]
 # tmux: set-option -g prefix C-a
 prefix = "ctrl+a"
+
+# Go To navigator; press / after opening to search workspaces, tabs, and panes.
+goto = ["prefix+g", "cmd+p"]
 
 # Splits, tmux muscle memory: v = side by side (herdr default), h = stacked.
 split_vertical = "prefix+v"
@@ -62,6 +75,41 @@ resize_mode = "prefix+shift+r"
 # every mouse selection; copy explicitly with Cmd+C. Only affects herdr's own
 # selection, not copies made by apps inside panes (Claude Code, opencode).
 copy_on_select = false
+# Frame even a lone pane (default "auto" = only when split), so a border line
+# separates the tab bar from the session. Needs pane_outer_borders (default true).
+pane_borders = "always"
+sidebar_width = 34            # default 26; auto-scales with workspace names
+sidebar_max_width = 80        # default 36
+status_indicators = "symbols" # distinct glyph per agent state instead of colored dots
+agent_panel_sort = "priority" # blocked → done → working → idle → unknown
+
+[ui.sidebar.spaces]
+# Title only (default adds a branch + git status line), one blank line between.
+# Bold stands in for a bigger font: herdr is a TUI, so every cell shares
+# Ghostty's single font size.
+rows = [["state_icon", { token = "workspace", bold = true }]]
+# row_gap = 1
+
+[ui.sidebar.agents]
+# Status → terminal title → harness + space, with a blank line between entries.
+# The title is whatever the app reports, not necessarily its saved session name;
+# Herdr omits the line when absent (no config-only fallback to the pane name).
+# Rules match each token's text: only the idle label is dimmed, not the whole entry.
+row_gap = 1
+rows = [
+  ["state_icon", { token = "state_text", bold = false, dim = false, rules = [
+    { equals = "blocked", ignore_case = true, fg = "#fdbc4b", bold = true },
+    { equals = "done", ignore_case = true, fg = "#2ecc71", bold = true },
+    { equals = "working", ignore_case = true, fg = "#3daee9" },
+    { equals = "idle", ignore_case = true, fg = "#9da9ad", bold = false, dim = true },
+  ] }],
+  [{ token = "terminal_title_stripped", fg = "#eff0f1", bold = true, dim = false }],
+  [{ token = "agent", bold = false, dim = false, rules = [
+    { equals = "claude", ignore_case = true, fg = "#d97757" },
+    { equals = "codex", ignore_case = true, fg = "#10a37f" },
+    { equals = "pi", ignore_case = true, fg = "#b07cd8" },
+  ] }, { token = "workspace", fg = "#9da9ad", bold = false }],
+]
 
 [ui.toast]
 # Ghostty raises the macOS notification when an agent finishes or needs input
