@@ -1,0 +1,88 @@
+# Ghostty terminal config. Ghostty.app is the primary terminal (it runs herdr, see
+# ~/dotfiles/herdr/config.toml); cmux.app embeds Ghostty and reads this same file.
+# Mirrors the iTerm2 default profile: Breeze color scheme (with its customized reds),
+# Monaco 12 and key mappings — extracted from iterm2/com.googlecode.iterm2.plist.
+# Lives in ~/dotfiles/ghostty/, symlinked to ~/.config/ghostty/config.ghostty by install.sh.
+# Ghostty >= 1.2.3 reads config.ghostty (the extensionless `config` still loads too),
+# so every setting here applies to BOTH Ghostty.app and cmux. cmux's own shortcuts
+# (cmux/cmux.json) take precedence over the keybinds below inside cmux.
+# Check after editing: ghostty +validate-config
+# Reload: cmd+shift+, in Ghostty; ctrl+a r in cmux.
+
+# iTerm2: Normal Font = Monaco 12 (PowerlineSymbols fallback is built into Ghostty)
+font-family = Monaco
+font-size = 12
+
+# iTerm2: Brighten Bold Text = true
+bold-is-bright = true
+
+# iTerm2: Cursor Type = box, Blinking Cursor = true
+cursor-style = block
+cursor-style-blink = true
+
+# KDE Breeze scheme as customized in the iTerm2 profile. palette 1/9 differ from
+# Ghostty's bundled "Breeze" theme (#ed7366/#ea3b24 vs #ed1515/#c0392b), hence
+# explicit colors here instead of `theme = Breeze`.
+background = #31363b
+foreground = #eff0f1
+cursor-color = #eff0f1
+cursor-text = #31363b
+selection-background = #eff0f1
+selection-foreground = #31363b
+palette = 0=#31363b
+palette = 1=#ed7366
+palette = 2=#11d116
+palette = 3=#f67400
+palette = 4=#1d99f3
+palette = 5=#9b59b6
+palette = 6=#1abc9c
+palette = 7=#eff0f1
+palette = 8=#7f8c8d
+palette = 9=#ea3b24
+palette = 10=#1cdc9a
+palette = 11=#fdbc4b
+palette = 12=#3daee9
+palette = 13=#8e44ad
+palette = 14=#16a085
+palette = 15=#fcfcfc
+
+# Inherit working directory for new surfaces/splits
+window-inherit-working-directory = true
+tab-inherit-working-directory = true
+split-inherit-working-directory = true
+
+# iTerm2: Left Option Key = Esc+ (acts as Alt/Meta), Right Option Key = Normal
+# (still types special characters).
+macos-option-as-alt = left
+
+# iTerm2: quit the app when its last window closes. Under herdr this only detaches
+# the client; the herdr server keeps every pane and agent running.
+quit-after-last-window-closed = true
+
+# iTerm2 profile key mappings.
+# Cmd+Left/Right = Home/End. Ghostty's defaults send \x01/\x05 (ctrl+a/ctrl+e)
+# instead, and ctrl+a is the herdr prefix, so Cmd+Left would arm prefix mode.
+keybind = cmd+arrow_left=text:\x1bOH
+keybind = cmd+arrow_right=text:\x1bOF
+# Cmd+W deletes the previous word (^W) instead of closing the window; same guard
+# as the iTerm2 profile mapping + Close remap in system/macos-defaults.sh.
+keybind = cmd+w=text:\x17
+
+# Chords herdr binds directly (cmux muscle memory, see herdr/config.toml).
+# Free them from Ghostty's defaults so they reach herdr:
+# cmd+ctrl+arrows = herdr pane focus (Ghostty default: resize_split)
+keybind = cmd+ctrl+arrow_left=unbind
+keybind = cmd+ctrl+arrow_right=unbind
+keybind = cmd+ctrl+arrow_up=unbind
+keybind = cmd+ctrl+arrow_down=unbind
+# cmd+shift+up/down = herdr workspace switch (Ghostty default: jump_to_prompt)
+keybind = cmd+shift+arrow_up=unbind
+keybind = cmd+shift+arrow_down=unbind
+# cmd+t = herdr new tab (Ghostty default: new_tab)
+keybind = cmd+t=unbind
+# cmd+n = herdr new workspace (Ghostty default: new_window), so a new Ghostty
+# window moves to cmd+shift+n, same as cmux's newWindow.
+keybind = cmd+n=unbind
+keybind = cmd+shift+n=new_window
+# cmd+shift+left/right (herdr tabs) and cmd+ctrl+shift+left/right (herdr move tab)
+# have no Ghostty default, so they need no unbind.

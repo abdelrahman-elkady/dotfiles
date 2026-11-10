@@ -1,0 +1,117 @@
+# herdr config: the agent multiplexer, run inside Ghostty.app.
+# Lives in ~/dotfiles/herdr/, symlinked to ~/.config/herdr/config.toml by install.sh.
+# Ported from ~/dotfiles/.tmux.conf (prefix + splits) and ~/dotfiles/cmux/cmux.json
+# (Cmd-based direct chords). Full defaults: `herdr --default-config`.
+# Check after editing: herdr config check
+# Reload: ctrl+a r (reload_config below) or `herdr server reload-config`.
+
+# Notification delivery is chosen in [ui.toast] below; skip the first-run prompt
+# (it would otherwise write its choice into this tracked file).
+onboarding = false
+
+[theme]
+# Follow the outer terminal's palette: Ghostty's Breeze colors in
+# ghostty/config.ghostty stay the single source of truth.
+name = "terminal"
+
+[theme.custom]
+# The terminal theme leaves panel_bg unset, so the focused tab draws its label in
+# surface_dim (ANSI 8, #7f8c8d) on accent (ANSI 4, #1d99f3): ~1.1:1, unreadable.
+# An explicit panel_bg (Ghostty's background, so panes look unchanged) becomes
+# the focused-tab label color instead: dark on light blue, ~4.9:1.
+panel_bg = "#31363b"
+accent = "#3daee9"          # Breeze palette 12, lighter than ANSI blue
+sidebar_bg = "#232629"      # Breeze's darker shade, sets the sidebar apart from panes
+active_row_bg = "#1e4a6b"   # focused workspace/agent row; default ANSI 8 was ~3:1 under white text
+
+[keys]
+# tmux: set-option -g prefix C-a
+prefix = "ctrl+a"
+
+# Go To navigator; press / after opening to search workspaces, tabs, and panes.
+goto = ["prefix+g", "cmd+p"]
+
+# Splits, tmux muscle memory: v = side by side (herdr default), h = stacked.
+split_vertical = "prefix+v"
+split_horizontal = ["prefix+h", "prefix+minus"]
+
+# Pane focus. Direct: cmux ⌘⌃+arrows (cmux.json focusLeft/Right/Up/Down).
+# Prefix fallback uses arrows because prefix+h is the split above.
+# Cmd chords never reach shells or agents, so they can't clash with pane apps
+# (bare ctrl/shift+arrows are word-motion/selection in readline and TUIs).
+focus_pane_left = ["prefix+left", "cmd+ctrl+left"]
+focus_pane_down = ["prefix+down", "cmd+ctrl+down"]
+focus_pane_up = ["prefix+up", "cmd+ctrl+up"]
+focus_pane_right = ["prefix+right", "cmd+ctrl+right"]
+# tmux: bind-key C-a last-window / cmux focusHistoryBack (ctrl+a ctrl+a).
+# herdr reserves prefix-twice for sending a literal ctrl+a to the pane, and has
+# no "last tab" action, so last pane goes on ctrl+a then a.
+last_pane = "prefix+a"
+
+# Tabs. Direct: cmux ⌘T (newSurface), ⌘⇧+←/→ (prevSurface/nextSurface).
+# prefix+c makes a workspace instead (see below), as it did in cmux.
+new_tab = "cmd+t"
+# cmux: renameTab = ⌘R
+rename_tab = ["prefix+shift+t", "cmd+r"]
+previous_tab = ["prefix+p", "cmd+shift+left"]
+next_tab = ["prefix+n", "cmd+shift+right"]
+# tmux: C-S-Left/Right swap-window; Cmd added to stay off pane apps' keys.
+move_tab_previous = "cmd+ctrl+shift+left"
+move_tab_next = "cmd+ctrl+shift+right"
+
+# Workspaces. cmux: ctrl+a c and ⌘N (newTab = new workspace), ⌘⇧+↑/↓ (prevSidebarTab/nextSidebarTab).
+new_workspace = ["prefix+c", "cmd+n", "prefix+shift+n"]
+# cmux: renameWorkspace = ⌘⇧R
+rename_workspace = ["prefix+shift+w", "cmd+shift+r"]
+previous_workspace = "cmd+shift+up"
+next_workspace = "cmd+shift+down"
+
+# tmux: bind r source-file. herdr's resize mode moves to reload's old key.
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+
+[ui]
+# tmux had `set -s set-clipboard off`: don't clobber the system clipboard on
+# every mouse selection; copy explicitly with Cmd+C. Only affects herdr's own
+# selection, not copies made by apps inside panes (Claude Code, opencode).
+copy_on_select = false
+# Frame even a lone pane (default "auto" = only when split), so a border line
+# separates the tab bar from the session. Needs pane_outer_borders (default true).
+pane_borders = "always"
+sidebar_width = 34            # default 26; auto-scales with workspace names
+sidebar_max_width = 80        # default 36
+status_indicators = "symbols" # distinct glyph per agent state instead of colored dots
+agent_panel_sort = "priority" # blocked → done → working → idle → unknown
+
+[ui.sidebar.spaces]
+# Title only (default adds a branch + git status line), one blank line between.
+# Bold stands in for a bigger font: herdr is a TUI, so every cell shares
+# Ghostty's single font size.
+rows = [["state_icon", { token = "workspace", bold = true }]]
+# row_gap = 1
+
+[ui.sidebar.agents]
+# Status → terminal title → harness + space, with a blank line between entries.
+# The title is whatever the app reports, not necessarily its saved session name;
+# Herdr omits the line when absent (no config-only fallback to the pane name).
+# Rules match each token's text: only the idle label is dimmed, not the whole entry.
+row_gap = 1
+rows = [
+  ["state_icon", { token = "state_text", bold = false, dim = false, rules = [
+    { equals = "blocked", ignore_case = true, fg = "#fdbc4b", bold = true },
+    { equals = "done", ignore_case = true, fg = "#2ecc71", bold = true },
+    { equals = "working", ignore_case = true, fg = "#3daee9" },
+    { equals = "idle", ignore_case = true, fg = "#9da9ad", bold = false, dim = true },
+  ] }],
+  [{ token = "terminal_title_stripped", fg = "#eff0f1", bold = true, dim = false }],
+  [{ token = "agent", bold = false, dim = false, rules = [
+    { equals = "claude", ignore_case = true, fg = "#d97757" },
+    { equals = "codex", ignore_case = true, fg = "#10a37f" },
+    { equals = "pi", ignore_case = true, fg = "#b07cd8" },
+  ] }, { token = "workspace", fg = "#9da9ad", bold = false }],
+]
+
+[ui.toast]
+# Ghostty raises the macOS notification when an agent finishes or needs input
+# (herdr's default is "off").
+delivery = "terminal"

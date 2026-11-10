@@ -168,7 +168,7 @@ defaults write com.googlecode.iterm2 NSUserKeyEquivalents -dict \
 ###############################################################################
 # cmux — app appearance                                                       #
 ###############################################################################
-# The terminal theme + keybindings come from the symlinked cmux/config.ghostty
+# The terminal theme + keybindings come from the symlinked ghostty/config.ghostty
 # and cmux/cmux.json, but the app chrome (sidebar theme, appearance, layout)
 # lives in the com.cmuxterm.app defaults domain — captured here.
 

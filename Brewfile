@@ -21,6 +21,8 @@ brew "ffmpeg"
 brew "fzf"
 # GitHub command-line tool
 brew "gh"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
 # Improved top (interactive process viewer)
 brew "htop"
 # Tools and libraries to manipulate images in select formats
@@ -71,6 +73,8 @@ cask "codex"
 cask "cursor"
 
 cask "font-powerline-symbols"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Open-source cross-platform alternative to AirDrop

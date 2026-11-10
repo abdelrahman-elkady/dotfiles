@@ -30,8 +30,13 @@ ln -sfv "$DOTFILES_DIR/.tmux.conf" ~
 mkdir -p "$HOME/.config/cmux"
 ln -sfv "$DOTFILES_DIR/cmux/cmux.json" "$HOME/.config/cmux/cmux.json"
 
+# Ghostty (Ghostty.app and cmux both read ~/.config/ghostty/config.ghostty)
 mkdir -p "$HOME/.config/ghostty"
-ln -sfv "$DOTFILES_DIR/cmux/config.ghostty" "$HOME/.config/ghostty/config.ghostty"
+ln -sfv "$DOTFILES_DIR/ghostty/config.ghostty" "$HOME/.config/ghostty/config.ghostty"
+
+# herdr
+mkdir -p "$HOME/.config/herdr"
+ln -sfv "$DOTFILES_DIR/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 
 # OpenCode
 mkdir -p "$HOME/.config/opencode/themes"
@@ -61,6 +66,18 @@ mkdir -p "$HOME/.claude"
 ln -sfv "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
 ln -sfv "$DOTFILES_DIR/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
 ln -sfv "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+
+# herdr agent integrations: agent state hooks + session resume after restarts.
+# Runs after the Claude/Pi/Codex/OpenCode setup above: the claude and pi
+# integrations write through those symlinks into this repo (claude/settings.json,
+# pi/agent/extensions/herdr-agent-state.ts). Re-running is idempotent.
+if command -v herdr >/dev/null 2>&1; then
+  for agent in claude pi codex opencode antigravity-cli; do
+    herdr integration install "$agent" || echo "Warning: herdr integration for $agent not installed (see message above)."
+  done
+else
+  echo "Warning: herdr not found; skipping herdr agent integrations (brew bundle installs it)."
+fi
 
 # GitHub CLI
 mkdir -p "$HOME/.config/gh"
